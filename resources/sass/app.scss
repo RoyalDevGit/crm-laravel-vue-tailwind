@@ -1,8 +1,15 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter');
+
 
 // Variables
 @import 'variables';
+
+
+*{
+    font-family: $font-family-sans-serif;
+}
 
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';

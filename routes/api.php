@@ -1,6 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\v1\CompanyController;
+use App\Http\Controllers\Api\v1\PasswordChange;
+use App\Http\Controllers\Api\v1\PersonController;
+use App\Http\Controllers\Api\v1\ProfileUpdateController;
+use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+
+    Route::get('/logout',[UserController::class,'logout']);
+    Route::put('/profile-update',ProfileUpdateController::class);
+    Route::put('/password-reset',PasswordChange::class);
+    Route::apiResource('/users', UserController::class);
+    Route::apiResource('/company', CompanyController::class);
+    Route::apiResource('/persons', PersonController::class);
+
+
 });

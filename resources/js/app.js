@@ -7,6 +7,8 @@ import Vue from 'vue';
 import router from './router';
 import store from './store';
 import App from './components/App';
+import axios from "axios";
+
 
 require('./bootstrap');
 
@@ -30,6 +32,8 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+axios.defaults.baseURL = 'http://crm-app.test/api';
 
 const app = new Vue({
     el: '#app',
