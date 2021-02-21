@@ -146,8 +146,8 @@
                             </div>
                         </header>
 
-                        <main class="flex-1 overflow-x-hidden overflow-y-auto text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900" >
-                            <div class="flex-1 dark:bg-gray-700 bg-gray-200 flex flex-col overflow-hidden">
+                        <main class="overflow-x-auto overflow-y-auto text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900" >
+                            <div class="dark:bg-gray-700 bg-gray-200 ">
                                 <div class="container mx-auto px-6 py-8">
                                     <router-view></router-view>
                                 </div>
@@ -264,6 +264,7 @@ import moment from 'moment';
 
 Vue.use(Notifications)
 Vue.use(Toasted)
+
 
 Vue.filter('formatDate',function(value){
     if(value){

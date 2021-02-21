@@ -17,59 +17,59 @@
             </div>
         </div>
         <div class="flex-col">
+            <div v-if="!this.loading">
+                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                    <div v-if="company.data">
+                        <table v-if="company.data" class="min-w-full leading-normal">
+                            <thead>
+                            <tr>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    ID
+                                </th>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Firma Adı
+                                </th>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Firma Telefon
+                                </th>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Firma Kayıt Sahibi
+                                </th>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    web Sitesi
+                                </th>
 
-            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <div v-if="company.data">
-                    <table v-if="company.data" class="min-w-full leading-normal">
-                        <thead>
-                        <tr>
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                ID
-                            </th>
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Firma Adı
-                            </th>
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Firma Telefon
-                            </th>
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Firma Kayıt Sahibi
-                            </th>
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                web Sitesi
-                            </th>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Aktif
+                                </th>
 
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Aktif
-                            </th>
-
-                            <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                İşlemler
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="item in company.data" :key="item.id">
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-800">
-                                <div class="flex items-center">
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 dark:text-white">{{ item.id }}</p>
+                                <th class="px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    İşlemler
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in company.data" :key="item.id">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-800">
+                                    <div class="flex items-center">
+                                        <div class="ml-3">
+                                            <p class="text-gray-900 dark:text-white">{{ item.id }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                <p class="text-gray-900 dark:text-white text-sm">{{ item.company_name }}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                <p class="text-gray-900 dark:text-white text-sm">{{ item.company_phone }}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                <p class="text-gray-900 dark:text-white text-sm">{{ item.company_author }}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                <p class="text-gray-900 dark:text-white text-sm">{{ item.company_web_site }}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
+                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.company_name }}</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
+                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.company_phone }}</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
+                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.company_author }}</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
+                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.company_web_site }}</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold leading-tight">
                                         <span aria-hidden
@@ -77,46 +77,60 @@
                                               class="absolute inset-0 opacity-50 rounded-full"></span>
                                         <span class="relative">{{ item.is_active == 1 ? 'Aktif' : 'Pasif' }}</span>
                                     </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
-                                İşlemler
-                                <router-link :to="{ name : 'company.update',params : {id : item.id } }"
-                                             class="whitespace-no-wrap dark:bg-green-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-green-700 text-white bg-green-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center">
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
+                                    İşlemler
+                                    <div class="flex">
+                                        <router-link :to="{ name : 'company.update',params : {id : item.id } }"
+                                                     class="whitespace-no-wrap dark:bg-green-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-green-700 text-white bg-green-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center">
                                     <span>
                                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>
                                     </span>
-                                </router-link>
-                                <!--
-                                <button @click="deleteCategories(category.id)"
-                                        class="whitespace-no-wrap bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                                    <span><i class="fa fa-trash"></i></span>
-                                </button>
-                                -->
-                            </td>
-                        </tr>
+                                        </router-link>
+                                        <button type="button" @click="deleteCompany(item.id)"
+                                                class="whitespace-no-wrap dark:bg-red-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-red-700 text-white bg-red-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center">
+                                    <span>
+                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                          <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                        </button>
+                                    </div>
 
-                        </tbody>
-                    </table>
-                    <div class="place-content-center">
-                        <Pagination :links="company.meta.links" :method="this.getCompany" name="company"/>
+
+
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="place-content-center">
+                            <Pagination :links="company.meta.links" :method="this.getCompany" name="company"/>
+                        </div>
                     </div>
-                </div>
-                <div v-else>
-                    <div
-                        class="dark:bg-gray-800 dark:text-white bg-gray-100 border text-center border-gray-200 text-gray--300 px-4 py-4 rounded relative"
-                        role="alert">
-                        <strong class="font-bold">Veri Bulunamadı.</strong>
-                        <span class="block sm:inline">Aradığınız kriterlere göre bir veri bulunamadı.</span>
-                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <div v-else>
+                        <div
+                            class="dark:bg-gray-800 dark:text-white bg-gray-100 border text-center border-gray-200 text-gray--300 px-4 py-4 rounded relative"
+                            role="alert">
+                            <strong class="font-bold">Veri Bulunamadı.</strong>
+                            <span class="block sm:inline">Aradığınız kriterlere göre bir veri bulunamadı.</span>
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                                     <svg class="fill-current h-6 w-6 text-orange-500" role="button"
                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Kapat</title><path
                                         d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
                                   </span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div v-else>
+                <div class="flex justify-center items-center">
+                    <Spinner/>
+                </div>
+            </div>
+
 
         </div>
     </div>
@@ -125,25 +139,41 @@
 <script>
 import AddButton from "../../components/AddButton";
 import Pagination from "../../components/Pagination";
+import Spinner from "../../components/Spinner";
 
 export default {
     name: "Index",
     data: function () {
         return {
+            loading: false,
             company: [],
         }
     },
     components: {
         AddButton,
-        Pagination
+        Pagination,
+        Spinner
     },
     mounted() {
         this.getCompany();
     },
     methods: {
         getCompany() {
+            this.loading = true;
             axios.get(`/company?page=${this.$route.query.page}`).then(res => {
+                this.loading = false;
                 this.company = res.data
+            });
+        },
+        deleteCompany(id){
+            this.loading = true;
+            axios.delete(`/company/${id}`).then(res => {
+                this.loading = false;
+                this.$notify(
+                    { group: res.data.status, title: "Başarılı", text: res.data.message },
+                    2000
+                );
+                this.getCompany();
             });
         }
     }

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Company;
 use Illuminate\Database\Seeder;
 
-class CompanyTableSeeder extends Seeder
+class TeamTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class CompanyTableSeeder extends Seeder
      */
     public function run()
     {
-        Company::factory(100)->create();
+        //
     }
 }

@@ -2338,6 +2338,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "Spinner"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ValidationErrorHelp.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ValidationErrorHelp.vue?vue&type=script&lang=js& ***!
@@ -2559,6 +2582,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_AddButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/AddButton */ "./resources/js/components/AddButton.vue");
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination.vue");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner.vue");
 //
 //
 //
@@ -2683,18 +2707,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Index",
   data: function data() {
     return {
+      loading: false,
       company: []
     };
   },
   components: {
     AddButton: _components_AddButton__WEBPACK_IMPORTED_MODULE_0__.default,
-    Pagination: _components_Pagination__WEBPACK_IMPORTED_MODULE_1__.default
+    Pagination: _components_Pagination__WEBPACK_IMPORTED_MODULE_1__.default,
+    Spinner: _components_Spinner__WEBPACK_IMPORTED_MODULE_2__.default
   },
   mounted: function mounted() {
     this.getCompany();
@@ -2703,8 +2744,26 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this = this;
 
+      this.loading = true;
       axios.get("/company?page=".concat(this.$route.query.page)).then(function (res) {
+        _this.loading = false;
         _this.company = res.data;
+      });
+    },
+    deleteCompany: function deleteCompany(id) {
+      var _this2 = this;
+
+      this.loading = true;
+      axios["delete"]("/company/".concat(id)).then(function (res) {
+        _this2.loading = false;
+
+        _this2.$notify({
+          group: res.data.status,
+          title: "Başarılı",
+          text: res.data.message
+        }, 2000);
+
+        _this2.getCompany();
       });
     }
   }
@@ -2724,6 +2783,242 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var _components_ValidationErrorHelp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/ValidationErrorHelp */ "./resources/js/components/ValidationErrorHelp.vue");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2836,32 +3131,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Update",
   data: function data() {
     return {
+      loading: false,
       errors: null,
       status: null,
-      company: {}
+      company: {},
+      attributes: {},
+      country: {},
+      city: {}
     };
   },
   components: {
-    ValidationErrorHelp: _components_ValidationErrorHelp__WEBPACK_IMPORTED_MODULE_0__.default
+    ValidationErrorHelp: _components_ValidationErrorHelp__WEBPACK_IMPORTED_MODULE_0__.default,
+    Spinner: _components_Spinner__WEBPACK_IMPORTED_MODULE_1__.default
   },
   mounted: function mounted() {
+    this.getCountry();
+    this.getCity();
     this.getCompany();
   },
   methods: {
     getCompany: function getCompany() {
       var _this = this;
 
+      this.loading = true;
       axios({
         url: "/company/".concat(this.$route.params.id),
         method: 'get'
       }).then(function (response) {
+        _this.loading = false;
         _this.company = response.data.data;
+        _this.attributes = response.data.attributes;
       })["catch"](function (error) {
-        return console.log(error);
+        console.log(error);
       });
     },
     updateCompany: function updateCompany() {
@@ -2888,6 +3194,26 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.status = error.response.status;
         _this2.loading = true;
+      });
+    },
+    getCountry: function getCountry() {
+      var _this3 = this;
+
+      axios({
+        url: "/country",
+        method: 'get'
+      }).then(function (response) {
+        _this3.country = response.data;
+      });
+    },
+    getCity: function getCity() {
+      var _this4 = this;
+
+      axios({
+        url: "/city",
+        method: 'get'
+      }).then(function (response) {
+        _this4.city = response.data;
       });
     }
   }
@@ -8113,6 +8439,106 @@ var mutations = {
 })));
 //# sourceMappingURL=bootstrap.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n@-webkit-keyframes loader-rotate-data-v-7ae326fe {\n0% {\n        transform: rotate(0);\n}\n100% {\n        transform: rotate(360deg);\n}\n}\n@keyframes loader-rotate-data-v-7ae326fe {\n0% {\n        transform: rotate(0);\n}\n100% {\n        transform: rotate(360deg);\n}\n}\n.loader[data-v-7ae326fe] {\n    border-right-color: transparent;\n    -webkit-animation: loader-rotate-data-v-7ae326fe 1s linear infinite;\n            animation: loader-rotate-data-v-7ae326fe 1s linear infinite;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
 
 /***/ }),
 
@@ -19020,14 +19446,15 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.20';
+  var VERSION = '4.17.21';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
 
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
-      FUNC_ERROR_TEXT = 'Expected a function';
+      FUNC_ERROR_TEXT = 'Expected a function',
+      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -19160,10 +19587,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
       reHasRegExpChar = RegExp(reRegExpChar.source);
 
-  /** Used to match leading and trailing whitespace. */
-  var reTrim = /^\s+|\s+$/g,
-      reTrimStart = /^\s+/,
-      reTrimEnd = /\s+$/;
+  /** Used to match leading whitespace. */
+  var reTrimStart = /^\s+/;
+
+  /** Used to match a single whitespace character. */
+  var reWhitespace = /\s/;
 
   /** Used to match wrap detail comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -19172,6 +19600,18 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
   /** Used to match words composed of alphanumeric characters. */
   var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+
+  /**
+   * Used to validate the `validate` option in `_.template` variable.
+   *
+   * Forbids characters which could potentially change the meaning of the function argument definition:
+   * - "()," (modification of function parameters)
+   * - "=" (default value)
+   * - "[]{}" (destructuring of function parameters)
+   * - "/" (beginning of a comment)
+   * - whitespace
+   */
+  var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
 
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
@@ -20002,6 +20442,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   }
 
   /**
+   * The base implementation of `_.trim`.
+   *
+   * @private
+   * @param {string} string The string to trim.
+   * @returns {string} Returns the trimmed string.
+   */
+  function baseTrim(string) {
+    return string
+      ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+      : string;
+  }
+
+  /**
    * The base implementation of `_.unary` without support for storing metadata.
    *
    * @private
@@ -20332,6 +20785,21 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
     return hasUnicode(string)
       ? unicodeToArray(string)
       : asciiToArray(string);
+  }
+
+  /**
+   * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+   * character of `string`.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {number} Returns the index of the last non-whitespace character.
+   */
+  function trimmedEndIndex(string) {
+    var index = string.length;
+
+    while (index-- && reWhitespace.test(string.charAt(index))) {}
+    return index;
   }
 
   /**
@@ -31502,7 +31970,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
       if (typeof value != 'string') {
         return value === 0 ? value : +value;
       }
-      value = value.replace(reTrim, '');
+      value = baseTrim(value);
       var isBinary = reIsBinary.test(value);
       return (isBinary || reIsOctal.test(value))
         ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -33874,6 +34342,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
+      // Throw an error if a forbidden character was found in `variable`, to prevent
+      // potential command injection attacks.
+      else if (reForbiddenIdentifierChars.test(variable)) {
+        throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
+      }
+
       // Cleanup code by stripping empty strings.
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
         .replace(reEmptyStringMiddle, '$1')
@@ -33987,7 +34461,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
     function trim(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrim, '');
+        return baseTrim(string);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -34022,7 +34496,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
     function trimEnd(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrimEnd, '');
+        return string.slice(0, trimmedEndIndex(string) + 1);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -60448,6 +60922,315 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_style_index_0_id_7ae326fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_style_index_0_id_7ae326fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_style_index_0_id_7ae326fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
 /***/ "./node_modules/vt-notifications/src/index.js":
 /*!****************************************************!*\
   !*** ./node_modules/vt-notifications/src/index.js ***!
@@ -60890,6 +61673,47 @@ component.options.__file = "resources/js/components/Pagination.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Spinner.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Spinner.vue ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _Spinner_vue_vue_type_template_id_7ae326fe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Spinner.vue?vue&type=template&id=7ae326fe&scoped=true& */ "./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&scoped=true&");
+/* harmony import */ var _Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Spinner.vue?vue&type=script&lang=js& */ "./resources/js/components/Spinner.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Spinner_vue_vue_type_style_index_0_id_7ae326fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css& */ "./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Spinner_vue_vue_type_template_id_7ae326fe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Spinner_vue_vue_type_template_id_7ae326fe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "7ae326fe",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Spinner.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ValidationErrorHelp.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/ValidationErrorHelp.vue ***!
@@ -61266,6 +62090,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Spinner.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Spinner.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Spinner.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ValidationErrorHelp.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/ValidationErrorHelp.vue?vue&type=script&lang=js& ***!
@@ -61394,6 +62234,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css& ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_style_index_0_id_7ae326fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=style&index=0&id=7ae326fe&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vt-notifications/src/VTNotification.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************!*\
   !*** ./node_modules/vt-notifications/src/VTNotification.vue?vue&type=script&lang=js& ***!
@@ -61490,6 +62343,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Pagination.vue?vue&type=template&id=d7acf176& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&scoped=true& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_template_id_7ae326fe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_template_id_7ae326fe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_template_id_7ae326fe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Spinner.vue?vue&type=template&id=7ae326fe&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&scoped=true&");
 
 
 /***/ }),
@@ -62333,15 +63203,12 @@ var render = function() {
                   "main",
                   {
                     staticClass:
-                      "flex-1 overflow-x-hidden overflow-y-auto text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900"
+                      "overflow-x-auto overflow-y-auto text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900"
                   },
                   [
                     _c(
                       "div",
-                      {
-                        staticClass:
-                          "flex-1 dark:bg-gray-700 bg-gray-200 flex flex-col overflow-hidden"
-                      },
+                      { staticClass: "dark:bg-gray-700 bg-gray-200 " },
                       [
                         _c(
                           "div",
@@ -63004,6 +63871,43 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", {
+        staticClass:
+          "w-12 h-12 border-8 border-gray-600 dark:border-gray-200 rounded-full loader"
+      })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ValidationErrorHelp.vue?vue&type=template&id=f370f256&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ValidationErrorHelp.vue?vue&type=template&id=f370f256& ***!
@@ -63619,284 +64523,363 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "flex-col" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "inline-block min-w-full shadow rounded-lg overflow-hidden"
-        },
-        [
-          _vm.company.data
-            ? _c("div", [
+      !this.loading
+        ? _c("div", [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "inline-block min-w-full shadow rounded-lg overflow-hidden"
+              },
+              [
                 _vm.company.data
-                  ? _c("table", { staticClass: "min-w-full leading-normal" }, [
-                      _vm._m(1),
+                  ? _c("div", [
+                      _vm.company.data
+                        ? _c(
+                            "table",
+                            { staticClass: "min-w-full leading-normal" },
+                            [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.company.data, function(item) {
+                                  return _c("tr", { key: item.id }, [
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-800"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "flex items-center" },
+                                          [
+                                            _c("div", { staticClass: "ml-3" }, [
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "text-gray-900 dark:text-white"
+                                                },
+                                                [_vm._v(_vm._s(item.id))]
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [_vm._v(_vm._s(item.company_name))]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [_vm._v(_vm._s(item.company_phone))]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [_vm._v(_vm._s(item.company_author))]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(item.company_web_site)
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "relative inline-block px-3 py-1 font-semibold leading-tight"
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass:
+                                                "absolute inset-0 opacity-50 rounded-full",
+                                              class:
+                                                item.is_active == 1
+                                                  ? "bg-green-200 dark:bg-green-500"
+                                                  : "bg-red-200 dark:bg-red-400",
+                                              attrs: { "aria-hidden": "" }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              { staticClass: "relative" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    item.is_active == 1
+                                                      ? "Aktif"
+                                                      : "Pasif"
+                                                  )
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                İşlemler\n                                "
+                                        ),
+                                        _c(
+                                          "div",
+                                          { staticClass: "flex" },
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "whitespace-no-wrap dark:bg-green-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-green-700 text-white bg-green-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center",
+                                                attrs: {
+                                                  to: {
+                                                    name: "company.update",
+                                                    params: { id: item.id }
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("span", [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass: "w-4 h-4",
+                                                      attrs: {
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d:
+                                                            "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ])
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "whitespace-no-wrap dark:bg-red-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-red-700 text-white bg-red-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center",
+                                                attrs: { type: "button" },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.deleteCompany(
+                                                      item.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("span", [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass: "w-4 h-4",
+                                                      attrs: {
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        viewBox: "0 0 20 20",
+                                                        fill: "currentColor"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "fill-rule":
+                                                            "evenodd",
+                                                          d:
+                                                            "M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z",
+                                                          "clip-rule": "evenodd"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ])
+                                              ]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
-                        "tbody",
-                        _vm._l(_vm.company.data, function(item) {
-                          return _c("tr", { key: item.id }, [
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-800"
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "flex items-center" },
-                                  [
-                                    _c("div", { staticClass: "ml-3" }, [
-                                      _c(
-                                        "p",
-                                        {
-                                          staticClass:
-                                            "text-gray-900 dark:text-white"
-                                        },
-                                        [_vm._v(_vm._s(item.id))]
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-gray-900 dark:text-white text-sm"
-                                  },
-                                  [_vm._v(_vm._s(item.company_name))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-gray-900 dark:text-white text-sm"
-                                  },
-                                  [_vm._v(_vm._s(item.company_phone))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-gray-900 dark:text-white text-sm"
-                                  },
-                                  [_vm._v(_vm._s(item.company_author))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-gray-900 dark:text-white text-sm"
-                                  },
-                                  [_vm._v(_vm._s(item.company_web_site))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "relative inline-block px-3 py-1 font-semibold leading-tight"
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "absolute inset-0 opacity-50 rounded-full",
-                                      class:
-                                        item.is_active == 1
-                                          ? "bg-green-200 dark:bg-green-500"
-                                          : "bg-red-200 dark:bg-red-400",
-                                      attrs: { "aria-hidden": "" }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("span", { staticClass: "relative" }, [
-                                      _vm._v(
-                                        _vm._s(
-                                          item.is_active == 1
-                                            ? "Aktif"
-                                            : "Pasif"
-                                        )
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            İşlemler\n                            "
-                                ),
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass:
-                                      "whitespace-no-wrap dark:bg-green-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-green-700 text-white bg-green-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center",
-                                    attrs: {
-                                      to: {
-                                        name: "company.update",
-                                        params: { id: item.id }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", [
-                                      _c(
-                                        "svg",
-                                        {
-                                          staticClass: "w-4 h-4",
-                                          attrs: {
-                                            xmlns: "http://www.w3.org/2000/svg",
-                                            fill: "none",
-                                            viewBox: "0 0 24 24",
-                                            stroke: "currentColor"
-                                          }
-                                        },
-                                        [
-                                          _c("path", {
-                                            attrs: {
-                                              "stroke-linecap": "round",
-                                              "stroke-linejoin": "round",
-                                              "stroke-width": "2",
-                                              d:
-                                                "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        }),
-                        0
+                        "div",
+                        { staticClass: "place-content-center" },
+                        [
+                          _c("Pagination", {
+                            attrs: {
+                              links: _vm.company.meta.links,
+                              method: this.getCompany,
+                              name: "company"
+                            }
+                          })
+                        ],
+                        1
                       )
                     ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "place-content-center" },
-                  [
-                    _c("Pagination", {
-                      attrs: {
-                        links: _vm.company.meta.links,
-                        method: this.getCompany,
-                        name: "company"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ])
-            : _c("div", [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "dark:bg-gray-800 dark:text-white bg-gray-100 border text-center border-gray-200 text-gray--300 px-4 py-4 rounded relative",
-                    attrs: { role: "alert" }
-                  },
-                  [
-                    _c("strong", { staticClass: "font-bold" }, [
-                      _vm._v("Veri Bulunamadı.")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "block sm:inline" }, [
-                      _vm._v("Aradığınız kriterlere göre bir veri bulunamadı.")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "absolute top-0 bottom-0 right-0 px-4 py-3"
-                      },
-                      [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "fill-current h-6 w-6 text-orange-500",
-                            attrs: {
-                              role: "button",
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("title", [_vm._v("Kapat")]),
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
-                              }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ])
-        ]
-      )
+                  : _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "dark:bg-gray-800 dark:text-white bg-gray-100 border text-center border-gray-200 text-gray--300 px-4 py-4 rounded relative",
+                          attrs: { role: "alert" }
+                        },
+                        [
+                          _c("strong", { staticClass: "font-bold" }, [
+                            _vm._v("Veri Bulunamadı.")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "block sm:inline" }, [
+                            _vm._v(
+                              "Aradığınız kriterlere göre bir veri bulunamadı."
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "absolute top-0 bottom-0 right-0 px-4 py-3"
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "fill-current h-6 w-6 text-orange-500",
+                                  attrs: {
+                                    role: "button",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
+                                  }
+                                },
+                                [
+                                  _c("title", [_vm._v("Kapat")]),
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+              ]
+            )
+          ])
+        : _c("div", [
+            _c(
+              "div",
+              { staticClass: "flex justify-center items-center" },
+              [_c("Spinner")],
+              1
+            )
+          ])
     ])
   ])
 }
@@ -63921,18 +64904,9 @@ var staticRenderFns = [
             staticClass:
               "px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
           },
-          [_vm._v("\n                            ID\n                        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
           [
             _vm._v(
-              "\n                            Firma Adı\n                        "
+              "\n                                ID\n                            "
             )
           ]
         ),
@@ -63945,7 +64919,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Firma Telefon\n                        "
+              "\n                                Firma Adı\n                            "
             )
           ]
         ),
@@ -63958,7 +64932,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Firma Kayıt Sahibi\n                        "
+              "\n                                Firma Telefon\n                            "
             )
           ]
         ),
@@ -63971,7 +64945,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            web Sitesi\n                        "
+              "\n                                Firma Kayıt Sahibi\n                            "
             )
           ]
         ),
@@ -63984,7 +64958,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Aktif\n                        "
+              "\n                                web Sitesi\n                            "
             )
           ]
         ),
@@ -63997,7 +64971,20 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            İşlemler\n                        "
+              "\n                                Aktif\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-800 dark:border-gray-800 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                İşlemler\n                            "
             )
           ]
         )
@@ -64074,333 +65061,1362 @@ var render = function() {
         "div",
         { staticClass: "flex justify-center items-center space-x-3 mt-5" },
         [
-          _c("div", [
-            _c("div", { staticClass: "mb-10" }, [
-              _c(
-                "div",
-                { staticClass: "flex block dark:text-white text-gray-900" },
-                [
-                  _c("div", { staticClass: "flex rounded mx-2 py-1 pt-1" }, [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-6 h-6",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          fill: "none",
-                          viewBox: "0 0 24 24",
-                          stroke: "currentColor"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round",
-                            "stroke-width": "2",
-                            d:
-                              "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "mx-2" }, [_vm._v("Firma Düzenle")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "mt-5 dark:bg-gray-800 bg-white shadow rounded-lg p-6"
-                },
-                [
+          !this.loading
+            ? _c("div", [
+                _c("div", { staticClass: "mb-10" }, [
                   _c(
-                    "form",
+                    "div",
                     {
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.updateCompany($event)
-                        }
-                      }
+                      staticClass:
+                        "mt-5 dark:bg-gray-800 bg-white shadow rounded-lg p-6"
                     },
                     [
-                      _c("div", { staticClass: "grid lg:grid-cols-2 gap-6" }, [
-                        _c("div", [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
-                            },
-                            [
-                              _vm._m(0),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c("p", [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.company.company_name,
-                                        expression: "company.company_name"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                      _c("div", [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex block dark:text-white text-gray-900"
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "flex rounded mx-2 py-1 pt-1" },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "w-6 h-6",
                                     attrs: {
-                                      id: "company_name",
-                                      autocomplete: "false",
-                                      tabindex: "0",
-                                      type: "text"
-                                    },
-                                    domProps: {
-                                      value: _vm.company.company_name
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.company,
-                                          "company_name",
-                                          $event.target.value
-                                        )
-                                      }
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      fill: "none",
+                                      viewBox: "0 0 24 24",
+                                      stroke: "currentColor"
                                     }
-                                  })
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        "stroke-linecap": "round",
+                                        "stroke-linejoin": "round",
+                                        "stroke-width": "2",
+                                        d:
+                                          "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mx-2" }, [
+                                  _vm._v("Firma Düzenle")
                                 ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("validation-error-help", {
-                                staticClass: "my-1 mx-1",
-                                attrs: {
-                                  status: this.status,
-                                  errors: this.errors,
-                                  "field-value": "company_name"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ]),
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("div", [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
-                            },
-                            [
-                              _vm._m(1),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c("p", [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.company.company_phone,
-                                        expression: "company.company_phone"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
-                                    attrs: {
-                                      id: "company_phone",
-                                      autocomplete: "false",
-                                      tabindex: "0",
-                                      type: "text"
-                                    },
-                                    domProps: {
-                                      value: _vm.company.company_phone
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.company,
-                                          "company_phone",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("validation-error-help", {
-                                staticClass: "my-1 mx-1",
-                                attrs: {
-                                  status: this.status,
-                                  errors: this.errors,
-                                  "field-value": "company_phone"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
-                            },
-                            [
-                              _vm._m(2),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c("p", [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.company.company_author,
-                                        expression: "company.company_author"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
-                                    attrs: {
-                                      id: "company_author",
-                                      autocomplete: "false",
-                                      tabindex: "0",
-                                      type: "text"
-                                    },
-                                    domProps: {
-                                      value: _vm.company.company_author
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.company,
-                                          "company_author",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("validation-error-help", {
-                                staticClass: "my-1 mx-1",
-                                attrs: {
-                                  status: this.status,
-                                  errors: this.errors,
-                                  "field-value": "company_author"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
-                            },
-                            [
-                              _vm._m(3),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c("p", [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.company.company_web_site,
-                                        expression: "company.company_web_site"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
-                                    attrs: {
-                                      id: "company_web_site",
-                                      autocomplete: "false",
-                                      tabindex: "0",
-                                      type: "text"
-                                    },
-                                    domProps: {
-                                      value: _vm.company.company_web_site
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.company,
-                                          "company_web_site",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("validation-error-help", {
-                                staticClass: "my-1 mx-1",
-                                attrs: {
-                                  status: this.status,
-                                  errors: this.errors,
-                                  "field-value": "company_web_site"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ])
+                        _c("div")
                       ]),
                       _vm._v(" "),
-                      _vm._m(4)
+                      _c("div", { staticClass: "mt-5" }, [
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.updateCompany($event)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "grid lg:grid-cols-3 gap-6" },
+                              [
+                                _c("div", { staticClass: "col-span-2" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(0),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.company.company_name,
+                                                expression:
+                                                  "company.company_name"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "company_name",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.company.company_name
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.company,
+                                                  "company_name",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "company_name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(1),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              disabled: "",
+                                              id: "user_id",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.attributes.user.name
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "company_name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(2),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company
+                                                      .company_main_country,
+                                                  expression:
+                                                    "company.company_main_country"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                name: "company_main_country",
+                                                id: "company_main_country"
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "company_main_country",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            _vm._l(_vm.country, function(item) {
+                                              return _vm.country
+                                                ? _c(
+                                                    "option",
+                                                    {
+                                                      key: item.id,
+                                                      domProps: {
+                                                        value: item.id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(item.name))]
+                                                  )
+                                                : _vm._e()
+                                            }),
+                                            0
+                                          )
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "company_main_country"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(3),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company.company_country,
+                                                  expression:
+                                                    "company.company_country"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                name: "company_country",
+                                                id: "company_country"
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "company_country",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            _vm._l(_vm.country, function(item) {
+                                              return _c(
+                                                "option",
+                                                {
+                                                  key: item.id,
+                                                  domProps: { value: item.id }
+                                                },
+                                                [_vm._v(_vm._s(item.name))]
+                                              )
+                                            }),
+                                            0
+                                          )
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "company_country"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm.company.company_country == 1
+                                  ? _c("div", [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                        },
+                                        [
+                                          _vm._m(4),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("p", [
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.company
+                                                          .company_city,
+                                                      expression:
+                                                        "company.company_city"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                  attrs: {
+                                                    name: "company_city",
+                                                    id: "company_city"
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.company,
+                                                        "company_city",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                _vm._l(_vm.city, function(
+                                                  item
+                                                ) {
+                                                  return _vm.city
+                                                    ? _c(
+                                                        "option",
+                                                        {
+                                                          key: item.id,
+                                                          domProps: {
+                                                            value: item.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(item.name)
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                }),
+                                                0
+                                              )
+                                            ])
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        [
+                                          _c("validation-error-help", {
+                                            staticClass: "my-1 mx-1",
+                                            attrs: {
+                                              status: this.status,
+                                              errors: this.errors,
+                                              "field-value": "company_city"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "border-t my-6 pt-3" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "grid lg:grid-cols-3 gap-6 my-3"
+                                },
+                                [
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(5),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company.company_phone,
+                                                  expression:
+                                                    "company.company_phone"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "company_phone",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value: _vm.company.company_phone
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "company_phone",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "company_phone"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(6),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company.company_author,
+                                                  expression:
+                                                    "company.company_author"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "company_author",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.company.company_author
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "company_author",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "company_author"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(7),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company
+                                                      .company_web_site,
+                                                  expression:
+                                                    "company.company_web_site"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "company_web_site",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.company.company_web_site
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "company_web_site",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "company_web_site"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(8),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.company.tax_number,
+                                                  expression:
+                                                    "company.tax_number"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "tax_number",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value: _vm.company.tax_number
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "tax_number",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "tax_number"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(9),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.company.sector,
+                                                  expression: "company.sector"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "sector",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value: _vm.company.sector
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "sector",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "sector"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(10),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.company.field,
+                                                  expression: "company.field"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "field",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value: _vm.company.field
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "field",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "field"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-span-2" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(11),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("textarea", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company.company_address,
+                                                  expression:
+                                                    "company.company_address"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "company_address",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.company.company_address
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "company_address",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "company_address"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(12),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.company.potential_fleet,
+                                                  expression:
+                                                    "company.potential_fleet"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "potential_fleet",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.company.potential_fleet
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.company,
+                                                    "potential_fleet",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "potential_fleet"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "border-t my-6 pt-3" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "grid lg:grid-cols-3 gap-6 my-3"
+                                },
+                                [
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(13),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.company.status_id,
+                                                    expression:
+                                                      "company.status_id"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                attrs: {
+                                                  name: "status_id",
+                                                  id: "status_id"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.company,
+                                                      "status_id",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              _vm._l(
+                                                _vm.attributes.status,
+                                                function(item) {
+                                                  return _vm.attributes.status
+                                                    ? _c(
+                                                        "option",
+                                                        {
+                                                          key: item.id,
+                                                          domProps: {
+                                                            value: item.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(item.name)
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "status_id"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(14),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.company
+                                                        .customer_type_id,
+                                                    expression:
+                                                      "company.customer_type_id"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                attrs: {
+                                                  name: "customer_type_id",
+                                                  id: "customer_type_id"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.company,
+                                                      "customer_type_id",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              _vm._l(
+                                                _vm.attributes.customer_type,
+                                                function(item) {
+                                                  return _vm.attributes
+                                                    .customer_type
+                                                    ? _c(
+                                                        "option",
+                                                        {
+                                                          key: item.id,
+                                                          domProps: {
+                                                            value: item.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(item.name)
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "customer_type_id"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(15),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.company.size_code_id,
+                                                    expression:
+                                                      "company.size_code_id"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                attrs: {
+                                                  name: "size_code_id",
+                                                  id: "size_code_id"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.company,
+                                                      "size_code_id",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              _vm._l(
+                                                _vm.attributes.size_code,
+                                                function(item) {
+                                                  return _vm.attributes
+                                                    .size_code
+                                                    ? _c(
+                                                        "option",
+                                                        {
+                                                          key: item.id,
+                                                          domProps: {
+                                                            value: item.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(item.name)
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "customer_type_id"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(16)
+                          ]
+                        )
+                      ])
                     ]
                   )
-                ]
-              )
-            ])
-          ])
+                ])
+              ])
+            : _c("div", [_c("Spinner")], 1)
         ]
       )
     ])
@@ -64424,6 +66440,94 @@ var staticRenderFns = [
               attrs: { for: "company_name" }
             },
             [_vm._v("Firma Adı")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "user_id" }
+            },
+            [_vm._v("Firma Kayıt Sahibi")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "company_main_country" }
+            },
+            [_vm._v("Firma Ana Ülke")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "company_country" }
+            },
+            [_vm._v("Firma Ülke")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "company_city" }
+            },
+            [_vm._v("Firma Şehir")]
           )
         ])
       ]
@@ -64499,6 +66603,182 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "tax_number" }
+            },
+            [_vm._v("Vergi Adresi")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "sector" }
+            },
+            [_vm._v("Sektör")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "field" }
+            },
+            [_vm._v("Alan")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "company_address" }
+            },
+            [_vm._v("Firma Adres")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "potential_fleet" }
+            },
+            [_vm._v("Potansiyel Filo")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "status_id" }
+            },
+            [_vm._v("Status")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "customer_type_id" }
+            },
+            [_vm._v("Müşteri Tipi")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "size_code_id" }
+            },
+            [_vm._v("Müşteri Tipi")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "border-t mt-6 pt-3" }, [
       _c(
         "button",
@@ -64509,7 +66789,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                                    Güncelle\n                                "
+            "\n                                        Güncelle\n                                    "
           )
         ]
       )
@@ -65757,7 +68037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /*!
-  * vue-router v3.5.0
+  * vue-router v3.5.1
   * (c) 2021 Evan You
   * @license MIT
   */
@@ -66940,14 +69220,14 @@ var Link = {
     }
 
     if (true) {
-      if (this.tag && !warnedTagProp) {
+      if ('tag' in this.$options.propsData && !warnedTagProp) {
         warn(
           false,
           "<router-link>'s tag prop is deprecated and has been removed in Vue Router 4. Use the v-slot API to remove this warning: https://next.router.vuejs.org/guide/migration/#removal-of-event-and-tag-props-in-router-link."
         );
         warnedTagProp = true;
       }
-      if (this.event && !warnedEventProp) {
+      if ('event' in this.$options.propsData && !warnedEventProp) {
         warn(
           false,
           "<router-link>'s event prop is deprecated and has been removed in Vue Router 4. Use the v-slot API to remove this warning: https://next.router.vuejs.org/guide/migration/#removal-of-event-and-tag-props-in-router-link."
@@ -68884,7 +71164,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.5.0';
+VueRouter.version = '3.5.1';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;
