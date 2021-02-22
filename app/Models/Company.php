@@ -9,6 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     public function person(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

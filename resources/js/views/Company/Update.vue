@@ -308,7 +308,7 @@
                                                 <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
                                                     <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
                                                         <p>
-                                                            <label for="size_code_id" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Müşteri Tipi</label>
+                                                            <label for="size_code_id" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Boyut Kodu</label>
                                                         </p>
                                                     </div>
                                                     <div>
@@ -390,12 +390,13 @@ export default {
                 method : 'put',
                 data : this.company,
             }).then(response => {
+                console.log(response);
                 this.company = response.data.data
                 this.$notify(
                     { group: response.data.status, title: "Başarılı", text: response.data.message},
                     2000
                 );
-                this.$router.go(-1);
+                //this.$router.go(-1);
             }).catch(error => {
                 if(422 === error.response.status){
                     this.errors = error.response.data.errors;

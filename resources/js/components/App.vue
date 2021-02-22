@@ -10,7 +10,7 @@
                          class="fixed z-30 inset-y-0 left-0 w-60 transition duration-300 transform bg-white dark:bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
                         <div class="flex items-center justify-center mt-8">
                             <div class="flex items-center">
-                                <span class="text-gray-800 dark:text-white text-2xl font-semibold">Dashboard</span>
+                                <span class="text-gray-800 dark:text-white text-2xl font-semibold">CRM</span>
                             </div>
                         </div>
 
@@ -146,16 +146,6 @@
                             </div>
                         </header>
 
-                        <main class="overflow-x-auto overflow-y-auto text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900" >
-                            <div class="dark:bg-gray-700 bg-gray-200 ">
-                                <div class="container mx-auto px-6 py-8">
-                                    <router-view></router-view>
-                                </div>
-                            </div>
-                        </main>
-
-
-
                         <notificationGroup group="success">
                             <div
                                 class="fixed inset-0 flex px-4 py-6 pointer-events-none p-6 items-start justify-end"
@@ -245,6 +235,18 @@
                                 </div>
                             </div>
                         </notificationGroup>
+
+                        <main class="overflow-x-auto overflow-y-auto text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900" >
+                            <div class="dark:bg-gray-700 bg-gray-200 ">
+                                <div class="container mx-auto px-6 py-8">
+                                    <router-view></router-view>
+                                </div>
+                            </div>
+                        </main>
+
+
+
+
                     </div>
                 </div>
             </div>

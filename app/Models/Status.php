@@ -9,6 +9,8 @@ class Status extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function company(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Company::class);

@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
     // Menu Route Resource
     Route::apiResource('/users', UserController::class);
     Route::apiResource('/company', CompanyController::class);
+    Route::get('/company-list', [CompanyController::class,'create']);
     Route::apiResource('/persons', PersonController::class);
 
 
