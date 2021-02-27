@@ -5,32 +5,42 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyRequest;
 use App\Http\Resources\CompanyResource;
-use App\Http\Resources\CustomerTypeResource;
-use App\Http\Resources\SizeCodeResource;
-use App\Http\Resources\StatusResource;
-use App\Http\Resources\UserResource;
 use App\Models\Company;
 use App\Models\CustomerType;
 use App\Models\SizeCode;
 use App\Models\Status;
+use App\Http\Filters\CompanySearchFilter;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
-use App\Models\User;
-use Epigra\TrGeoZones\Models\City;
-use Epigra\TrGeoZones\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @param Request $request
+     * @return AnonymousResourceCollection
      */
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return CompanyResource::collection(Company::paginate(10));
+        $paginate = $request->has('paginate') ? $request->paginate : 5;
+
+        $company = QueryBuilder::for(Company::class)
+            ->allowedFilters([
+                AllowedFilter::exact('status_id'),
+                AllowedFilter::exact('customer_type_id'),
+                AllowedFilter::exact('size_code_id'),
+                AllowedFilter::custom('companySearch', new CompanySearchFilter),
+            ])->allowedSorts('id')
+            ->paginate($paginate);
+
+
+        return CompanyResource::collection($company);
     }
 
     /**
@@ -38,7 +48,7 @@ class CompanyController extends Controller
      *
      * @return JsonResponse
      */
-    public function create()
+    public function create(): JsonResponse
     {
         return Response::json([
             'attributes' => [
@@ -55,7 +65,7 @@ class CompanyController extends Controller
      * @param CompanyRequest $request
      * @return JsonResponse
      */
-    public function store(CompanyRequest $request)
+    public function store(CompanyRequest $request): JsonResponse
     {
         $request->validated();
 
@@ -84,7 +94,7 @@ class CompanyController extends Controller
                 'result' => 1,
                 'status' => 'success',
                 'message' => 'Yeni bir firma eklendi.'
-            ],201);
+            ], 201);
         } else {
             return response()->json([
                 'result' => 0,
@@ -100,7 +110,7 @@ class CompanyController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function show($id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         $company = new CompanyResource(Company::find($id));
         return Response::json([
@@ -120,7 +130,7 @@ class CompanyController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function edit($id) :  JsonResponse
+    public function edit(int $id): JsonResponse
     {
         //
     }
@@ -132,7 +142,7 @@ class CompanyController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function update(CompanyRequest $request, $id)
+    public function update(CompanyRequest $request, int $id): JsonResponse
     {
         $request->validated();
 
@@ -155,21 +165,20 @@ class CompanyController extends Controller
             'size_code_id' => $request->size_code_id,
         ])->save();
 
-        if($company){
+        if ($company) {
             return response()->json([
                 'result' => 1,
                 'status' => 'success',
                 'message' => 'Firma bilgileri düzenlenmiştir.',
                 'data' => new CompanyResource($company),
-            ],201);
-        }
-        else{
+            ], 201);
+        } else {
             return response()->json([
                 'result' => 0,
                 'status' => 'error',
                 'message' => 'Sunucu hatası...',
                 'data' => null,
-            ],500);
+            ], 500);
         }
 
     }
@@ -180,22 +189,46 @@ class CompanyController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function destroy($id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         $company = Company::destroy($id);
-        if ($company){
+        if ($company) {
             return Response::json([
                 'result' => 1,
                 'status' => 'success',
                 'message' => 'Kayıt silme işlemi başarılı',
             ]);
-        }else{
+        } else {
             return Response::json([
                 'result' => 0,
                 'status' => 'error',
                 'message' => 'Sunucu Hatası...',
             ]);
         }
+
+    }
+    public function active($id){
+        $data = Company::find($id);
+        $data->fill([
+           'is_active' => $data->is_active == 1 ? 0 : 1
+        ])->save();
+
+        if ($data) {
+            return response()->json([
+                'result' => 1,
+                'status' => 'success',
+                'message' => 'Firma bilgileri düzenlenmiştir.',
+                'data' => new CompanyResource($data),
+            ], 201);
+        } else {
+            return response()->json([
+                'result' => 0,
+                'status' => 'error',
+                'message' => 'Sunucu hatası...',
+                'data' => null,
+            ], 500);
+        }
+
 
     }
 }

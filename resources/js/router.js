@@ -7,6 +7,7 @@ import CompanyCreate from './views/Company/Create';
 import CompanyUpdate from './views/Company/Update';
 import Person from './views/Person/Index';
 import PersonCreate from './views/Person/Create';
+import PersonUpdate from './views/Person/Update';
 
 Vue.use(VueRouter);
 
@@ -45,7 +46,7 @@ export default new VueRouter({
             meta : { title : 'Kişiler Ekle '}
         },
         {
-            path : '/person/update/:id', name : 'person.update', component : CompanyUpdate,
+            path : '/person/update/:id', name : 'person.update', component : PersonUpdate,
             meta : { title : 'Kişiler Güncelle '}
         },
     ]

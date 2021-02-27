@@ -29,7 +29,7 @@
                                 </button>
 
                                 <div>
-                                    <h1 class="text-2xl font-medium text-gray-800 dark:text-white">Ana Sayfa</h1>
+                                    <h1 class="text-2xl font-medium text-gray-800 dark:text-white"><!-- Ana Sayfa --></h1>
                                 </div>
                             </div>
 

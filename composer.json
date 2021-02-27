@@ -20,7 +20,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
-        "spatie/laravel-permission": "^4.0"
+        "spatie/laravel-json-api-paginate": "^1.10",
+        "spatie/laravel-permission": "^4.0",
+        "spatie/laravel-query-builder": "^3.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

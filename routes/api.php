@@ -35,6 +35,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('/users', UserController::class);
     Route::apiResource('/company', CompanyController::class);
     Route::get('/company-list', [CompanyController::class,'create']);
+    Route::put('/company-active/{id}', [CompanyController::class,'active']);
     Route::apiResource('/persons', PersonController::class);
 
 

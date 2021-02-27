@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between space-x-3 min-h-screen">
+    <div class="flex justify-center space-x-3 min-h-screen">
         <div>
             <div class="m-16">
                 <div class="flex block dark:text-white text-gray-900">
