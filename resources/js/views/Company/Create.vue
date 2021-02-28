@@ -1,7 +1,8 @@
 <template>
     <div class="flex flex-col space-x-5 min-h-screen">
         <div class="flex-col">
-            <a @click="$router.go(-1)" class="cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-2 px-4 rounded inline-flex items-center">
+
+            <a @click="$router.go(-1)" class="cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-1 px-2 rounded inline-flex items-center">
                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
                 </svg>

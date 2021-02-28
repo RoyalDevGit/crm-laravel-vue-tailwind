@@ -3,18 +3,36 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use Epigra\TrGeoZones\Models\City;
-use Epigra\TrGeoZones\Models\Country;
-use Illuminate\Http\Request;
+use App\Repositories\City\CityRepositoryInterface;
+use App\Repositories\Country\CountryRepositoryInterface;
+use Illuminate\Support\Facades\Response;
+
 
 class CountryCityController extends Controller
 {
-    public function country(){
-        return response()->json(Country::all());
+    public $countryRepository;
+    public $cityRepository;
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param CountryRepositoryInterface $countryRepository
+     */
+
+    public function __construct(CountryRepositoryInterface $countryRepository,CityRepositoryInterface $cityRepository)
+    {
+        $this->countryRepository= $countryRepository;
+        $this->cityRepository= $cityRepository;
     }
 
-    public function city(){
-        $city = City::all();
-        return response()->json($city);
+    public function country(): \Illuminate\Http\JsonResponse
+    {
+        return Response::json($this->countryRepository->all());
+    }
+
+    public function city(): \Illuminate\Http\JsonResponse
+    {
+        $city = $this->cityRepository->all();
+        return Response::json($city);
     }
 }

@@ -4,30 +4,38 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\UserRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Repositories\User\UserRepositoryInterface;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileUpdateController extends Controller
 {
+
+    public $userRepository;
+
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param UserRepositoryInterface $userRepository
      */
-    public function __invoke(UserRequest $request)
+
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $user = User::find(Auth::user()->id);
+        $this->userRepository= $userRepository;
+    }
+
+    public function __invoke(UserRequest $request): \Illuminate\Http\JsonResponse
+    {
+        $user = $this->userRepository->find(Auth::user()->id);
 
         $user->fill([
             'name' => $request->name,
         ])->save();
 
         if($user){
-            return response()->json(['result' => 1, 'status' => 'success','message' => 'Bilgileriniz başarılı bir şekilde güncellenmiştir.'],201);
+            return Response::json(['result' => 1, 'status' => 'success','message' => 'Profil bilgileriniz güncellendi.'],200);
         } else {
-            return response()->json(['result' => 0, 'status' => 'error','message' => 'Sunucu hatası.'],500);
+            return Response::json(['result' => 0, 'status' => 'error','message' => 'Sunucu hatası.'],500);
         }
     }
 }

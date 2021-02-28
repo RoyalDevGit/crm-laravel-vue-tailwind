@@ -2767,6 +2767,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2881,6 +2882,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AddButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/AddButton */ "./resources/js/components/AddButton.vue");
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination.vue");
 /* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner.vue");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -64720,7 +64728,7 @@ var render = function() {
         "a",
         {
           staticClass:
-            "cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-2 px-4 rounded inline-flex items-center",
+            "cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-1 px-2 rounded inline-flex items-center",
           on: {
             click: function($event) {
               return _vm.$router.go(-1)
@@ -66957,6 +66965,45 @@ var render = function() {
               }
             })
           ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center",
+              on: {
+                click: function($event) {
+                  return _vm.getCompany()
+                }
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "w-5 h-5 mr-2",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d:
+                        "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    }
+                  })
+                ]
+              ),
+              _vm._v("\n                Yenile\n            ")
+            ]
+          ),
           _vm._v(" "),
           _c(
             "router-link",

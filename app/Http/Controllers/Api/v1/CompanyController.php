@@ -6,20 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyRequest;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
-use App\Models\CustomerType;
-use App\Models\SizeCode;
-use App\Models\Status;
-use App\Http\Filters\CompanySearchFilter;
+use App\Repositories\Company\CompanyRepositoryInterface;
+use App\Repositories\CustomerType\CustomerTypeRepositoryInterface;
+use App\Repositories\SizeCode\SizeCodeRepositoryInterface;
+use App\Repositories\Status\StatusRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class CompanyController extends Controller
 {
+    public $companyRepository;
+    public $customerTypeRepository;
+    public $sizeCodeRepository;
+    public $statusRepository;
+
+    public function __construct(CompanyRepositoryInterface $companyRepository,CustomerTypeRepositoryInterface $customerTypeRepository,SizeCodeRepositoryInterface $sizeCodeRepository,StatusRepositoryInterface $statusRepository)
+    {
+        $this->companyRepository= $companyRepository;
+        $this->customerTypeRepository= $customerTypeRepository;
+        $this->sizeCodeRepository= $sizeCodeRepository;
+        $this->statusRepository= $statusRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,18 +39,7 @@ class CompanyController extends Controller
      */
     public function index(Request $request): AnonymousResourceCollection
     {
-        $paginate = $request->has('paginate') ? $request->paginate : 5;
-
-        $company = QueryBuilder::for(Company::class)
-            ->allowedFilters([
-                AllowedFilter::exact('status_id'),
-                AllowedFilter::exact('customer_type_id'),
-                AllowedFilter::exact('size_code_id'),
-                AllowedFilter::custom('companySearch', new CompanySearchFilter),
-            ])->allowedSorts('id')
-            ->paginate($paginate);
-
-
+        $company = $this->companyRepository->get($request);
         return CompanyResource::collection($company);
     }
 
@@ -52,9 +52,9 @@ class CompanyController extends Controller
     {
         return Response::json([
             'attributes' => [
-                'size_code' => SizeCode::all(),
-                'customer_type' => CustomerType::all(),
-                'status' => Status::all(),
+                'size_code' => $this->sizeCodeRepository->all(),
+                'customer_type' => $this->customerTypeRepository->all(),
+                'status' => $this->statusRepository->all(),
             ],
         ]);
     }
@@ -69,7 +69,7 @@ class CompanyController extends Controller
     {
         $request->validated();
 
-        $create = Company::create([
+        $create = $this->companyRepository->create([
             'company_name' => $request->company_name,
             'company_address' => $request->company_address,
             'company_main_country' => $request->company_main_country,
@@ -90,13 +90,13 @@ class CompanyController extends Controller
         ]);
 
         if ($create) {
-            return response()->json([
+            return Response::json([
                 'result' => 1,
                 'status' => 'success',
                 'message' => 'Yeni bir firma eklendi.'
-            ], 201);
+            ], 200);
         } else {
-            return response()->json([
+            return Response::json([
                 'result' => 0,
                 'status' => 'error',
                 'message' => 'Sunucu hatası..'
@@ -112,13 +112,13 @@ class CompanyController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $company = new CompanyResource(Company::find($id));
+        $company = new CompanyResource($this->companyRepository->find($id));
         return Response::json([
             'data' => $company,
             'attributes' => [
-                'size_code' => SizeCode::all(),
-                'customer_type' => CustomerType::all(),
-                'status' => Status::all(),
+                'size_code' => $this->sizeCodeRepository->all(),
+                'customer_type' => $this->customerTypeRepository->all(),
+                'status' => $this->statusRepository->all(),
                 'user' => $company->user,
             ],
         ]);
@@ -146,7 +146,7 @@ class CompanyController extends Controller
     {
         $request->validated();
 
-        $company = Company::find($id);
+        $company = $this->companyRepository->find($id);
         $company->fill([
             'company_name' => $request->company_name,
             'company_address' => $request->company_address,
@@ -166,14 +166,14 @@ class CompanyController extends Controller
         ])->save();
 
         if ($company) {
-            return response()->json([
+            return Response::json([
                 'result' => 1,
                 'status' => 'success',
-                'message' => 'Firma bilgileri düzenlenmiştir.',
+                'message' => 'Firma bilgileri düzenlendi.',
                 'data' => new CompanyResource($company),
-            ], 201);
+            ], 200);
         } else {
-            return response()->json([
+            return Response::json([
                 'result' => 0,
                 'status' => 'error',
                 'message' => 'Sunucu hatası...',
@@ -191,12 +191,12 @@ class CompanyController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        $company = Company::destroy($id);
+        $company = $this->companyRepository->destroy($id);
         if ($company) {
             return Response::json([
                 'result' => 1,
                 'status' => 'success',
-                'message' => 'Kayıt silme işlemi başarılı',
+                'message' => 'Kayıt silindi.',
             ]);
         } else {
             return Response::json([
@@ -207,21 +207,22 @@ class CompanyController extends Controller
         }
 
     }
-    public function active($id){
-        $data = Company::find($id);
+    public function active($id): JsonResponse
+    {
+        $data = $this->companyRepository->find($id);
         $data->fill([
            'is_active' => $data->is_active == 1 ? 0 : 1
         ])->save();
 
         if ($data) {
-            return response()->json([
+            return Response::json([
                 'result' => 1,
                 'status' => 'success',
-                'message' => 'Firma bilgileri düzenlenmiştir.',
+                'message' => 'Firma bilgileri düzenlendi.',
                 'data' => new CompanyResource($data),
-            ], 201);
+            ], 200);
         } else {
-            return response()->json([
+            return Response::json([
                 'result' => 0,
                 'status' => 'error',
                 'message' => 'Sunucu hatası...',
