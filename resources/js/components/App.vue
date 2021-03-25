@@ -65,8 +65,8 @@
                                     <button @click="setState('setDropDownOpen',!dropDownOpen)"
                                             class="flex items-center space-x-2 relative focus:outline-none">
                                         <h2 class="text-gray-700 dark:text-gray-300 text-sm hidden sm:block"> {{user.name}} </h2>
-                                        <img class="h-9 w-9 rounded-full border-2 border-purple-500 object-cover"
-                                             src="https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                                        <img class="h-9 w-9 rounded-full border-2 border-purple-500 object-cover" v-if="user.profile_image"
+                                             :src="user.profile_image"
                                              alt="Your avatar">
                                     </button>
 
@@ -74,7 +74,7 @@
                                         <div @click.away="setState('setSideBarOpen',!sideBarOpen)" v-show="dropDownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
                                             <router-link :to="{name : 'profile' }"
                                                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-800 hover:text-white dark:text-white dark:bg-white dark:hover:bg-white dark:hover:text-gray-800 dark:bg-gray-800">
-                                                Profile
+                                                Profil
                                             </router-link>
                                             <a href="http://crm-app.test/logout" @click="logout"
                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-800 hover:text-white dark:text-white dark:bg-white dark:hover:bg-white dark:hover:text-gray-800 dark:bg-gray-800">Çıkış Yap</a>

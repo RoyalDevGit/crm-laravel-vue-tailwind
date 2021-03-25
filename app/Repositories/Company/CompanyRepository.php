@@ -28,7 +28,6 @@ class CompanyRepository implements CompanyRepositoryInterface
                 AllowedFilter::custom('companySearch', new CompanySearchFilter),
             ])->allowedSorts('id')
             ->paginate($paginate);
-
     }
 
     public function create($data){

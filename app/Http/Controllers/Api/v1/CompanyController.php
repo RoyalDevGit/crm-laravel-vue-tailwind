@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyRequest;
 use App\Http\Resources\CompanyResource;
-use App\Models\Company;
 use App\Repositories\Company\CompanyRepositoryInterface;
 use App\Repositories\CustomerType\CustomerTypeRepositoryInterface;
 use App\Repositories\SizeCode\SizeCodeRepositoryInterface;

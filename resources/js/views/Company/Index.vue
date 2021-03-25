@@ -111,7 +111,7 @@
             <div v-if="!this.loading">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <div v-if="company.data">
-                        <table v-if="company.data" class="min-w-full leading-normal border-2 dark:border-gray-500">
+                        <table class="min-w-full leading-normal border-2 dark:border-gray-500">
                             <thead>
                             <tr>
                                 <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -161,17 +161,11 @@
                                     <p class="text-gray-900 dark:text-white text-sm">{{ item.company_web_site }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
-                                    <span
-                                        class="relative inline-block py-1 font-semibold leading-tight">
+                                    <label class="flex items-center">
+                                        <input  @change="setIsActive(item.id)" :checked="item.is_active == 1" class="relative w-10 h-5 transition-all duration-200 ease-in-out bg-gray-400 rounded-full shadow-inner outline-none appearance-none " type="checkbox" />
+                                        <span class="ml-2">{{  item.is_active == 1 ? 'Aktif' : 'Pasif' }}</span>
+                                    </label>
 
-                                        <label class="flex justify-start items-start">
-                                          <div class="bg-white border-2 rounded border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-                                            <input @change="setIsActive(item.id)" :checked="item.is_active == 1" type="checkbox" class="opacity-0 absolute" :class="item.is_active == 1 ? 'bg-green-200 dark:bg-green-500' : 'bg-red-200 dark:bg-red-400'">
-                                            <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-                                          </div>
-                                          <div class="select-none">{{ item.is_active == 1 ? 'Aktif' : 'Pasif' }}</div>
-                                        </label>
-                                    </span>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
                                     İşlemler
@@ -311,7 +305,26 @@ export default {
 </script>
 
 <style scoped>
-input:checked + svg {
-    display: block;
+input:before {
+    content: '';
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    transform: scale(1.1);
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+    background-color: white;
+    transition: .2s ease-in-out;
+}
+
+input:checked {
+    @apply: bg-indigo-400;
+    background-color:#7f9cf5;
+}
+
+input:checked:before {
+    left: 1.25rem;
 }
 </style>

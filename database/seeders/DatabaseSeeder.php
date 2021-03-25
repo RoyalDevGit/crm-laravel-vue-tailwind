@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         DB::table('customer_types')->truncate();
         DB::table('size_codes')->truncate();
         DB::table('users')->truncate();
+        DB::table('mods')->truncate();
         DB::table('companies')->truncate();
         DB::table('people')->truncate();
         DB::table('geozone_countries')->truncate();
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(TrGeoZonesDatabaseSeeder::class);
         $this->call(StatusTableSeeder::class);
+        $this->call(ModTableSeeder::class);
         $this->call(CustomerTypeTableSeeder::class);
         $this->call(SizeCodeTableSeeder::class);
         $this->call(UserTableSeeder::class);
