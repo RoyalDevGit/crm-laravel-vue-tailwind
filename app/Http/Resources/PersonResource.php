@@ -16,11 +16,20 @@ class PersonResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'person_name' => $this->person_name,
-            'companies' => new CompanyResource($this->companies),
+            'person_first_name' => $this->person_first_name,
+            'person_last_name' => $this->person_last_name,
+            'person_gender' => $this->person_gender,
+            'person_title' => $this->person_title,
+            'person_department' => $this->person_department,
             'person_email' => $this->person_email,
             'person_phone' => $this->person_phone,
-            'user' => new UserResource($this->user),
+            'person_phone2' => $this->person_phone2,
+            'preferred_contact' => $this->preferred_contact,
+            'skype' => $this->skype,
+            'social_media' => $this->social_media,
+            'lead_source' => $this->lead_source,
+            'address' => $this->address,
+            'mod' => $this->mod,
             'is_active' => $this->is_active,
         ];
     }

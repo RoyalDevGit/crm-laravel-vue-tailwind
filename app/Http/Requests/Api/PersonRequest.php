@@ -24,20 +24,23 @@ class PersonRequest extends FormRequest
     public function rules()
     {
         return [
-            'person_name' => 'required',
+            'person_first_name' => 'required',
+            'person_last_name' => 'required',
             'companies_id' => 'required',
             'person_email' => 'required|max:35',
             'person_phone' => 'required|min:11|max:25',
-            'user_id' => 'required',
+            'mod_id' => 'required',
         ];
     }
     public function attributes()
     {
         return [
-            'person_name' => 'Kişi Adı',
+            'person_first_name' => 'Kişi Adı',
+            'person_last_name' => 'Kişi Soyad',
             'companies_id' => 'Şirket Adı',
             'person_email' => 'Kişi E-mail',
             'person_phone' => 'Kişi Telefon',
+            'mod_id' => 'Mod',
         ];
     }
 }
