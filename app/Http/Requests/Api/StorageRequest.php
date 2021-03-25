@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class StorageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:40',
+            'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
     public function attributes()
     {
         return [
-            'name' => 'required',
+            'image' => 'Resim',
         ];
     }
 }

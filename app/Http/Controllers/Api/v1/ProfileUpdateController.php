@@ -26,14 +26,15 @@ class ProfileUpdateController extends Controller
 
     public function __invoke(UserRequest $request): \Illuminate\Http\JsonResponse
     {
+
         $user = $this->userRepository->find(Auth::user()->id);
 
-        $user->fill([
-            'name' => $request->name,
-        ])->save();
+        $user->name = $request->name;
+        $user->profile_image = $request->profile_image;
+        $user->save();
 
         if($user){
-            return Response::json(['result' => 1, 'status' => 'success','message' => 'Profil bilgileriniz güncellendi.'],200);
+            return Response::json(['result' => 1, 'status' => 'success','message' => 'Profil bilgileriniz güncellendi.','data' => $user],200);
         } else {
             return Response::json(['result' => 0, 'status' => 'error','message' => 'Sunucu hatası.'],500);
         }

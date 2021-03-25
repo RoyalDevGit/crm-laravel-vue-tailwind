@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\v1\CountryCityController;
 use App\Http\Controllers\Api\v1\PasswordChange;
 use App\Http\Controllers\Api\v1\PersonController;
 use App\Http\Controllers\Api\v1\ProfileUpdateController;
+use App\Http\Controllers\Api\v1\StorageController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::middleware('auth:api')->group(function () {
     // Country - City
     Route::get('/country',[CountryCityController::class,'country']);
     Route::get('/city',[CountryCityController::class,'city']);
+    Route::get('/district/{id}',[CountryCityController::class,'district']);
 
     // Profile Routes
     Route::get('/logout',[UserController::class,'logout']);
@@ -36,7 +38,11 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('/company', CompanyController::class);
     Route::get('/company-list', [CompanyController::class,'create']);
     Route::put('/company-active/{id}', [CompanyController::class,'active']);
-    Route::apiResource('/persons', PersonController::class);
 
+    Route::apiResource('/persons', PersonController::class);
+    Route::get('/person-list', [PersonController::class,'create']);
+    Route::put('/person-active/{id}', [PersonController::class,'active']);
+
+    Route::post('/upload-image' , StorageController::class)->name('upload.editor');
 
 });

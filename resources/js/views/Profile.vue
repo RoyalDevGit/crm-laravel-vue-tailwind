@@ -13,23 +13,45 @@
                 </div>
                 <div class="mt-5 dark:bg-gray-800 bg-white shadow rounded-lg p-6">
                     <form v-on:submit.prevent="updateUser">
-                        <div class="grid lg:grid-cols-3 gap-6">
+                        <div class="grid lg:grid-cols-3">
                             <div>
-                                <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
-                                    <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+                                <img :src="user.profile_image" class="h-40 w-40 rounded-full object-cover" alt="Profile Image">
+                            </div>
+
+                            <div class="col-span-2">
+                                <div class="m-4">
+                                    <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
+                                        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+                                            <p>
+                                                <label for="name" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Ad Soyad</label>
+                                            </p>
+                                        </div>
                                         <p>
-                                            <label for="name" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Ad Soyad</label>
+                                            <input id="name" v-model="user.name" autocomplete="false" tabindex="0" type="text" class="py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full">
                                         </p>
                                     </div>
-                                    <p>
-                                        <input id="name" v-model="user.name" autocomplete="false" tabindex="0" type="text" class="py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full">
-                                    </p>
+                                    <div>
+                                        <validation-error-help class="my-1 mx-1"  :status="this.status" :errors="this.errors" field-value="name"/>
+                                    </div>
+                                </div>
+                                <div class="m-4">
+                                    <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
+                                        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+                                            <p>
+                                                <label for="name" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Profil Resmi</label>
+                                            </p>
+                                        </div>
+                                        <p>
+                                            <input @change="onFileChanged" id="profile_image" autocomplete="false" tabindex="0" type="file" class="py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full">
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <validation-error-help class="my-1 mx-1"  :status="this.status" :errors="this.errors" field-value="profile_image"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <validation-error-help class="my-1 mx-1"  :status="this.status" :errors="this.errors" field-value="name"/>
-                            </div>
                         </div>
+
                         <div class="border-t mt-6 pt-3">
                             <button type="submit" class="rounded text-sm text-white dark:text-black px-3 py-1 dark:bg-white bg-gray-800 hover:shadow-inner hover:bg-blue-700 transition-all duration-300">
                                 Kaydet
@@ -98,6 +120,7 @@
                                     <validation-error-help class="my-1 mx-1"  :status="this.status" :errors="this.errors" field-value="new_password_confirmation"/>
                                 </div>
                             </div>
+
                         </div>
                         <div class="border-t mt-6 pt-3">
                             <button type="submit" class="rounded text-sm text-white dark:text-black px-3 py-1 dark:bg-white bg-gray-800 hover:shadow-inner hover:bg-blue-700 transition-all duration-300">
@@ -158,6 +181,7 @@ export default {
             });
         },
         updateUser : function (){
+            console.log(this.user);
             axios({
                 url: `/profile-update`,
                 method: "PUT",
@@ -168,7 +192,23 @@ export default {
                     2000
                 );
             })
-        }
+        },
+        onFileChanged(event){
+            var formData = new FormData();
+            formData.append("image", event.target.files[0]);
+            formData.append("folderName", 'profile_image');
+
+            axios({
+                url : 'upload-image',
+                method : 'POST',
+                data : formData,
+            }).then(response => {
+                this.user.profile_image = response.data.data.image_url; // Get url from response
+                this.$store.commit('setUser',this.user);
+                this.updateUser();
+            })
+
+        },
     },
 }
 </script>
