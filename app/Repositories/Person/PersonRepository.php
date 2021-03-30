@@ -38,6 +38,9 @@ class PersonRepository implements PersonRepositoryInterface
     public function find($id){
         return $this->model->find($id);
     }
+    public function update($data){
+        return $this->model->update($data);
+    }
 
     public function destroy($id){
         return $this->model->destroy($id);

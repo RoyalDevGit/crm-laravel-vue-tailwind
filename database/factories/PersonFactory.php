@@ -27,6 +27,7 @@ class PersonFactory extends Factory
      */
     public function definition()
     {
+        $cities = City::all()->random()->id;
         return [
             'person_first_name' => $this->faker->firstName,
             'person_last_name' => $this->faker->lastName,
@@ -43,8 +44,8 @@ class PersonFactory extends Factory
             'person_countries' => Country::all()->random()->id,
             'companies_id' => Company::all()->random()->id,
             'user_id' => User::all()->random()->id,
-            'person_cities' => City::all()->random()->id,
-            'person_district' => CityDistrict::all()->random()->id,
+            'person_cities' => $cities,
+            'person_district' => CityDistrict::where('city_id',$cities)->distinct('ilce')->first(),
             'is_active' => $this->faker->randomElement([0,1]),
         ];
     }

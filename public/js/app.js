@@ -3101,12 +3101,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3607,7 +3601,6 @@ __webpack_require__.r(__webpack_exports__);
         method: 'put',
         data: this.company
       }).then(function (response) {
-        console.log(response);
         _this2.company = response.data.data;
 
         _this2.$notify({
@@ -4072,11 +4065,11 @@ __webpack_require__.r(__webpack_exports__);
         'social_media': '',
         'lead_source': '',
         'address': '',
-        'mod_id': '',
+        'mod': '',
         'person_countries': 1,
         'person_cities': '',
         'person_district': '',
-        'companies_id': ''
+        'companies': ''
       }
     };
   },
@@ -4365,6 +4358,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4398,16 +4395,32 @@ __webpack_require__.r(__webpack_exports__);
         _this.person = res.data;
       });
     },
-    setIsActive: function setIsActive(id) {
+    deletePerson: function deletePerson(id) {
       var _this2 = this;
+
+      this.loading = true;
+      axios["delete"]("/persons/".concat(id)).then(function (res) {
+        _this2.loading = false;
+
+        _this2.$notify({
+          group: res.data.status,
+          title: "Başarılı",
+          text: res.data.message
+        }, 2000);
+
+        _this2.getPerson();
+      });
+    },
+    setIsActive: function setIsActive(id) {
+      var _this3 = this;
 
       axios({
         url: "/person-active/".concat(id),
         method: 'put'
       }).then(function (response) {
-        _this2.getPerson();
+        _this3.getPerson();
 
-        _this2.$notify({
+        _this3.$notify({
           group: response.data.status,
           title: "Başarılı",
           text: response.data.message
@@ -4415,11 +4428,11 @@ __webpack_require__.r(__webpack_exports__);
 
       })["catch"](function (error) {
         if (422 === error.response.status) {
-          _this2.errors = error.response.data.errors;
+          _this3.errors = error.response.data.errors;
         }
 
-        _this2.status = error.response.status;
-        _this2.loading = true;
+        _this3.status = error.response.status;
+        _this3.loading = true;
       });
     }
   }
@@ -4438,14 +4451,454 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _components_ValidationErrorHelp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/ValidationErrorHelp */ "./resources/js/components/ValidationErrorHelp.vue");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner.vue");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Update"
+  name: "Update",
+  components: {
+    ValidationErrorHelp: _components_ValidationErrorHelp__WEBPACK_IMPORTED_MODULE_0__.default,
+    Spinner: _components_Spinner__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      loading: false,
+      errors: null,
+      status: null,
+      country: {},
+      company: {},
+      city: {},
+      district: {},
+      attributes: {},
+      person: {}
+    };
+  },
+  mounted: function mounted() {
+    this.getPerson();
+    this.getCountry();
+    this.getCity();
+  },
+  methods: {
+    getPerson: function getPerson() {
+      var _this = this;
+
+      this.loading = true;
+      axios({
+        url: "/persons/".concat(this.$route.params.id),
+        method: 'get'
+      }).then(function (response) {
+        _this.loading = false;
+        _this.person = response.data.data;
+        _this.attributes = response.data.attributes;
+
+        _this.getDistrict();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    updatePerson: function updatePerson() {
+      var _this2 = this;
+
+      axios({
+        url: "/persons/".concat(this.$route.params.id),
+        method: 'put',
+        data: this.person
+      }).then(function (result) {
+        _this2.person = result.data.data;
+
+        _this2.$notify({
+          group: result.data.status,
+          title: "Başarılı",
+          text: result.data.message
+        }, 2000);
+      })["catch"](function (error) {
+        if (422 === error.response.status) {
+          _this2.errors = error.response.data.errors;
+        }
+
+        _this2.status = error.response.status;
+        _this2.loading = true;
+      });
+    },
+    getCountry: function getCountry() {
+      var _this3 = this;
+
+      axios({
+        url: "/country",
+        method: 'get'
+      }).then(function (response) {
+        _this3.country = response.data;
+      });
+    },
+    getCity: function getCity() {
+      var _this4 = this;
+
+      axios({
+        url: "/city",
+        method: 'get'
+      }).then(function (response) {
+        _this4.city = response.data;
+      });
+    },
+    getDistrict: function getDistrict() {
+      var _this5 = this;
+
+      axios({
+        url: "district/".concat(this.person.person_cities),
+        method: 'get'
+      }).then(function (response) {
+        _this5.district = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -4659,7 +5112,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateUser: function updateUser() {
       var _this2 = this;
 
-      console.log(this.user);
       axios({
         url: "/profile-update",
         method: "PUT",
@@ -4688,6 +5140,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.$store.commit('setUser', _this3.user);
 
         _this3.updateUser();
+      })["catch"](function (error) {
+        if (422 === error.response.status) {
+          _this3.errors = error.response.data.errors;
+        }
+
+        _this3.status = error.response.status;
+        _this3.loading = true;
       });
     }
   }
@@ -9601,6 +10060,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\ninput[data-v-598f7217]:before {\n    content: '';\n    position: absolute;\n    width: 1.25rem;\n    height: 1.25rem;\n    border-radius: 50%;\n    top: 0;\n    left: 0;\n    transform: scale(1.1);\n    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);\n    background-color: white;\n    transition: .2s ease-in-out;\n}\ninput[data-v-598f7217]:checked {\n@apply: bg-indigo-400;\n    background-color:#7f9cf5;\n}\ninput[data-v-598f7217]:checked:before {\n    left: 1.25rem;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput:checked + svg[data-v-c659f658] {\n    display: block;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -62213,6 +62696,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Update_vue_vue_type_style_index_0_id_c659f658_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Update_vue_vue_type_style_index_0_id_c659f658_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Update_vue_vue_type_style_index_0_id_c659f658_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -63308,15 +63821,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Update_vue_vue_type_template_id_c659f658_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Update.vue?vue&type=template&id=c659f658&scoped=true& */ "./resources/js/views/Person/Update.vue?vue&type=template&id=c659f658&scoped=true&");
 /* harmony import */ var _Update_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Update.vue?vue&type=script&lang=js& */ "./resources/js/views/Person/Update.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Update_vue_vue_type_style_index_0_id_c659f658_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css& */ "./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _Update_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _Update_vue_vue_type_template_id_c659f658_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _Update_vue_vue_type_template_id_c659f658_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -63674,6 +64189,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_598f7217_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=style&index=0&id=598f7217&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Index.vue?vue&type=style&index=0&id=598f7217&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css& ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Update_vue_vue_type_style_index_0_id_c659f658_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=style&index=0&id=c659f658&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -64282,7 +64810,7 @@ var render = function() {
                               _vm.user.profile_image
                                 ? _c("img", {
                                     staticClass:
-                                      "h-9 w-9 rounded-full border-2 border-purple-500 object-cover",
+                                      "h-9 w-9 rounded-full border-2 border-gray-800 object-cover",
                                     attrs: {
                                       src: _vm.user.profile_image,
                                       alt: "Your avatar"
@@ -67877,24 +68405,6 @@ var render = function() {
                                   "td",
                                   {
                                     staticClass:
-                                      "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                                  },
-                                  [
-                                    _c(
-                                      "p",
-                                      {
-                                        staticClass:
-                                          "text-gray-900 dark:text-white text-sm"
-                                      },
-                                      [_vm._v(_vm._s(item.company_web_site))]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass:
                                       "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
                                   },
                                   [
@@ -68176,19 +68686,6 @@ var staticRenderFns = [
           [
             _vm._v(
               "\n                                Firma Kayıt Sahibi\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                web Sitesi\n                            "
             )
           ]
         ),
@@ -70375,17 +70872,15 @@ var render = function() {
                                                 {
                                                   name: "model",
                                                   rawName: "v-model",
-                                                  value:
-                                                    _vm.person.companies_id,
-                                                  expression:
-                                                    "person.companies_id"
+                                                  value: _vm.person.companies,
+                                                  expression: "person.companies"
                                                 }
                                               ],
                                               staticClass:
                                                 "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
                                               attrs: {
-                                                name: "companies_id",
-                                                id: "companies_id"
+                                                name: "companies",
+                                                id: "companies"
                                               },
                                               on: {
                                                 change: function($event) {
@@ -70405,7 +70900,7 @@ var render = function() {
                                                     })
                                                   _vm.$set(
                                                     _vm.person,
-                                                    "companies_id",
+                                                    "companies",
                                                     $event.target.multiple
                                                       ? $$selectedVal
                                                       : $$selectedVal[0]
@@ -70457,7 +70952,7 @@ var render = function() {
                                         attrs: {
                                           status: this.status,
                                           errors: this.errors,
-                                          "field-value": "companies_id"
+                                          "field-value": "companies"
                                         }
                                       })
                                     ],
@@ -71460,15 +71955,15 @@ var render = function() {
                                                   {
                                                     name: "model",
                                                     rawName: "v-model",
-                                                    value: _vm.person.mod_id,
-                                                    expression: "person.mod_id"
+                                                    value: _vm.person.mod,
+                                                    expression: "person.mod"
                                                   }
                                                 ],
                                                 staticClass:
                                                   "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
                                                 attrs: {
-                                                  name: "mod_id",
-                                                  id: "mod_id"
+                                                  name: "mod",
+                                                  id: "mod"
                                                 },
                                                 on: {
                                                   change: function($event) {
@@ -71488,7 +71983,7 @@ var render = function() {
                                                       })
                                                     _vm.$set(
                                                       _vm.person,
-                                                      "mod_id",
+                                                      "mod",
                                                       $event.target.multiple
                                                         ? $$selectedVal
                                                         : $$selectedVal[0]
@@ -71532,6 +72027,2664 @@ var render = function() {
                                               ],
                                               2
                                             )
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "mod"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(16)
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            : _c("div", [_c("Spinner")], 1)
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_first_name" }
+            },
+            [_vm._v("Ad")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_last_name" }
+            },
+            [_vm._v("Soyad")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "companies" }
+            },
+            [_vm._v("Firma")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_gender" }
+            },
+            [_vm._v("Cinsiyet")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_title" }
+            },
+            [_vm._v("Ünvan")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_department" }
+            },
+            [_vm._v("Bölümü")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_email" }
+            },
+            [_vm._v("E-mail")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_phone" }
+            },
+            [_vm._v("Telefon")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_phone2" }
+            },
+            [_vm._v("Kişi Telefon 2")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "preferred_contact" }
+            },
+            [_vm._v("Tercih Edilen Kontat")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "skype" }
+            },
+            [_vm._v("Skype")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_countries" }
+            },
+            [_vm._v("Ülke")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_cities" }
+            },
+            [_vm._v("Şehir")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "person_cities" }
+            },
+            [_vm._v("İlçe")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "address" }
+            },
+            [_vm._v("Kişi Adres")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "-mt-4 absolute tracking-wider px-1 uppercase text-xs" },
+      [
+        _c("p", [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
+              attrs: { for: "mod" }
+            },
+            [_vm._v("Mod Seçiniz")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "border-t mt-6 pt-3" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "rounded text-sm text-white dark:text-black px-3 py-1 dark:bg-white bg-gray-800 hover:shadow-inner hover:bg-blue-700 transition-all duration-300",
+          attrs: { type: "submit" }
+        },
+        [
+          _vm._v(
+            "\n                                        Ekle\n                                    "
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Index.vue?vue&type=template&id=598f7217&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Index.vue?vue&type=template&id=598f7217&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "flex flex-col space-x-3 min-h-screen" }, [
+    _c("div", { staticClass: "flex-col mb-5" }, [
+      _c(
+        "div",
+        { staticClass: "dark:text-gray-400 text-gray-500 font-bold my-3 pl-5" },
+        [
+          _c(
+            "nav",
+            {
+              staticClass:
+                "float-left text-gray-900 dark:text-gray-400 mt-2 text-sm float-left font-bold",
+              attrs: { "aria-label": "Breadcrumb" }
+            },
+            [
+              _c("ol", { staticClass: "list-none p-0 inline-flex" }, [
+                _c(
+                  "li",
+                  { staticClass: "flex items-center" },
+                  [
+                    _c("router-link", { attrs: { to: { name: "home" } } }, [
+                      _vm._v("Ana Sayfa")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "fill-current w-3 h-3 mx-3",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 320 512"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                          }
+                        })
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "text-gray-500",
+                        attrs: {
+                          to: { name: "person" },
+                          "aria-current": "person"
+                        }
+                      },
+                      [_vm._v("Kişiler")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex-col mb-5" }, [
+      _c(
+        "div",
+        { staticClass: "my-2 flex sm:flex-row flex-col" },
+        [
+          _c("div", { staticClass: "flex flex-row mb-1 sm:mb-0" }, [
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.filtered.paginate,
+                      expression: "filtered.paginate"
+                    }
+                  ],
+                  staticClass:
+                    "appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.filtered,
+                          "paginate",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        return _vm.getPerson()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "20" } }, [_vm._v("20")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "50" } }, [_vm._v("50")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "block flex-row relative" }, [
+            _c(
+              "span",
+              {
+                staticClass:
+                  "h-full absolute inset-y-0 left-0 flex items-center pl-2"
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-4 w-4 fill-current text-gray-500",
+                    attrs: { viewBox: "0 0 24 24" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.filtered.search,
+                  expression: "filtered.search"
+                }
+              ],
+              staticClass:
+                "appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none",
+              attrs: { placeholder: "Arama Yap" },
+              domProps: { value: _vm.filtered.search },
+              on: {
+                change: function($event) {
+                  return _vm.getPerson()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.filtered, "search", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "lg:ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center",
+              on: {
+                click: function($event) {
+                  return _vm.getPerson()
+                }
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "w-5 h-5 mr-2",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d:
+                        "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    }
+                  })
+                ]
+              ),
+              _vm._v("\n                Yenile\n            ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass:
+                "lg:ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center",
+              attrs: { to: { name: "person.create" } }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "w-5 h-5 mr-2",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d:
+                        "M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    }
+                  })
+                ]
+              ),
+              _vm._v("\n                Yeni\n            ")
+            ]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex-col" }, [
+      !this.loading
+        ? _c("div", [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "inline-block min-w-full shadow rounded-lg overflow-hidden"
+              },
+              [
+                _vm.person.data
+                  ? _c("div", [
+                      _vm.person.data
+                        ? _c(
+                            "table",
+                            {
+                              staticClass:
+                                "min-w-full leading-normal border-2 dark:border-gray-500"
+                            },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.person.data, function(item) {
+                                  return _c("tr", { key: item.id }, [
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-800"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "flex items-center" },
+                                          [
+                                            _c("div", { staticClass: "ml-3" }, [
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "text-gray-900 dark:text-white"
+                                                },
+                                                [_vm._v(_vm._s(item.id))]
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                item.person_first_name +
+                                                  " " +
+                                                  item.person_last_name
+                                              )
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [_vm._v(_vm._s(item.person_email))]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-gray-900 dark:text-white text-sm"
+                                          },
+                                          [_vm._v(_vm._s(item.person_phone))]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        item.mod
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-gray-900 dark:text-white text-sm"
+                                              },
+                                              [_vm._v(_vm._s(item.mod.name))]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _c(
+                                          "label",
+                                          { staticClass: "flex items-center" },
+                                          [
+                                            _c("input", {
+                                              staticClass:
+                                                "relative w-10 h-5 transition-all duration-200 ease-in-out bg-gray-400 rounded-full shadow-inner outline-none appearance-none ",
+                                              attrs: { type: "checkbox" },
+                                              domProps: {
+                                                checked: item.is_active == 1
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  return _vm.setIsActive(
+                                                    item.id
+                                                  )
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              { staticClass: "ml-2" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    item.is_active == 1
+                                                      ? "Aktif"
+                                                      : "Pasif"
+                                                  )
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass:
+                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                İşlemler\n                                "
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "whitespace-no-wrap dark:bg-green-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-green-700 text-white bg-green-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center",
+                                            attrs: {
+                                              to: {
+                                                name: "person.update",
+                                                params: { id: item.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", [
+                                              _c(
+                                                "svg",
+                                                {
+                                                  staticClass: "w-4 h-4",
+                                                  attrs: {
+                                                    xmlns:
+                                                      "http://www.w3.org/2000/svg",
+                                                    fill: "none",
+                                                    viewBox: "0 0 24 24",
+                                                    stroke: "currentColor"
+                                                  }
+                                                },
+                                                [
+                                                  _c("path", {
+                                                    attrs: {
+                                                      "stroke-linecap": "round",
+                                                      "stroke-linejoin":
+                                                        "round",
+                                                      "stroke-width": "2",
+                                                      d:
+                                                        "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "whitespace-no-wrap dark:bg-red-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-red-700 text-white bg-red-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center",
+                                            attrs: { type: "button" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deletePerson(item.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", [
+                                              _c(
+                                                "svg",
+                                                {
+                                                  staticClass: "w-4 h-4",
+                                                  attrs: {
+                                                    xmlns:
+                                                      "http://www.w3.org/2000/svg",
+                                                    viewBox: "0 0 20 20",
+                                                    fill: "currentColor"
+                                                  }
+                                                },
+                                                [
+                                                  _c("path", {
+                                                    attrs: {
+                                                      "fill-rule": "evenodd",
+                                                      d:
+                                                        "M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z",
+                                                      "clip-rule": "evenodd"
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "place-content-center" },
+                        [
+                          _c("Pagination", {
+                            attrs: {
+                              links: _vm.person.meta.links,
+                              method: this.getPerson,
+                              name: "person"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  : _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "dark:bg-gray-800 dark:text-white bg-gray-100 border text-center border-gray-200 text-gray--300 px-4 py-4 rounded relative",
+                          attrs: { role: "alert" }
+                        },
+                        [
+                          _c("strong", { staticClass: "font-bold" }, [
+                            _vm._v("Veri Bulunamadı.")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "block sm:inline" }, [
+                            _vm._v(
+                              "Aradığınız kriterlere göre bir veri bulunamadı."
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "absolute top-0 bottom-0 right-0 px-4 py-3"
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "fill-current h-6 w-6 text-orange-500",
+                                  attrs: {
+                                    role: "button",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
+                                  }
+                                },
+                                [
+                                  _c("title", [_vm._v("Kapat")]),
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+              ]
+            )
+          ])
+        : _c("div", [
+            _c(
+              "div",
+              { staticClass: "flex justify-center items-center" },
+              [_c("Spinner")],
+              1
+            )
+          ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                ID\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                Adı Soyadı\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                E-posta\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-widerr"
+          },
+          [
+            _vm._v(
+              "\n                                Cep Telefonu\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                Mod\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                Durum\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          },
+          [
+            _vm._v(
+              "\n                                İşlemler\n                            "
+            )
+          ]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=template&id=c659f658&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=template&id=c659f658&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "flex flex-col space-x-5 min-h-screen" }, [
+    _c("div", { staticClass: "flex-col" }, [
+      _c(
+        "a",
+        {
+          staticClass:
+            "cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-1 px-2 rounded inline-flex items-center",
+          on: {
+            click: function($event) {
+              return _vm.$router.go(-1)
+            }
+          }
+        },
+        [
+          _c(
+            "svg",
+            {
+              staticClass: "w-4 h-4",
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  "stroke-linecap": "round",
+                  "stroke-linejoin": "round",
+                  "stroke-width": "2",
+                  d: "M7 16l-4-4m0 0l4-4m-4 4h18"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "m-1" }, [_vm._v("Geri Dön")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex-col mt-5" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex justify-center h-full w-full items-center space-x-3 mt-5"
+        },
+        [
+          !this.loading
+            ? _c("div", [
+                _c("div", { staticClass: "mb-10" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "mt-5 dark:bg-gray-800 bg-white shadow rounded-lg p-6"
+                    },
+                    [
+                      _c("div", [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex block dark:text-white text-gray-900"
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "flex rounded mx-2 py-1 pt-1" },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "w-6 h-6",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      fill: "none",
+                                      viewBox: "0 0 24 24",
+                                      stroke: "currentColor"
+                                    }
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        "stroke-linecap": "round",
+                                        "stroke-linejoin": "round",
+                                        "stroke-width": "2",
+                                        d:
+                                          "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mx-2" }, [
+                                  _vm._v("Kişi Güncelle")
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-5" }, [
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.updatePerson($event)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "grid lg:grid-cols-3 gap-6" },
+                              [
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(0),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.person.person_first_name,
+                                                expression:
+                                                  "person.person_first_name"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_first_name",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.person.person_first_name
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_first_name",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_first_name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(1),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.person.person_last_name,
+                                                expression:
+                                                  "person.person_last_name"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_last_name",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.person.person_last_name
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_last_name",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_last_name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(2),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.person.companies_id,
+                                                  expression:
+                                                    "person.companies_id"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                name: "companies_id",
+                                                id: "companies_id"
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.person,
+                                                    "companies_id",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                {
+                                                  attrs: {
+                                                    value: "",
+                                                    selected: ""
+                                                  }
+                                                },
+                                                [_vm._v("Firma seçiniz")]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._l(
+                                                _vm.attributes.company,
+                                                function(item) {
+                                                  return _vm.attributes.company
+                                                    ? _c(
+                                                        "option",
+                                                        {
+                                                          key: item.id,
+                                                          domProps: {
+                                                            value: item.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              item.company_name
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                }
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "companies_id"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(3),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.person.person_gender,
+                                                  expression:
+                                                    "person.person_gender"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                name: "person_gender",
+                                                id: "person_gender"
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.person,
+                                                    "person_gender",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                {
+                                                  attrs: {
+                                                    value: "",
+                                                    selected: ""
+                                                  }
+                                                },
+                                                [_vm._v("Cinsiyet Seçiniz")]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._l(
+                                                _vm.attributes.gender,
+                                                function(item) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      domProps: { value: item }
+                                                    },
+                                                    [_vm._v(_vm._s(item))]
+                                                  )
+                                                }
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_gender"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(4),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.person.person_title,
+                                                expression:
+                                                  "person.person_title"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_title",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.person.person_title
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_title",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_title"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(5),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.person.person_department,
+                                                expression:
+                                                  "person.person_department"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_department",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.person.person_department
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_department",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_department"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(6),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.person.person_email,
+                                                expression:
+                                                  "person.person_email"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_email",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.person.person_email
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_email",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_email"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(7),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.person.person_phone,
+                                                expression:
+                                                  "person.person_phone"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_phone",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.person.person_phone
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_phone",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_phone"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(8),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.person.person_phone2,
+                                                expression:
+                                                  "person.person_phone2"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "person_phone2",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.person.person_phone2
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "person_phone2",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "person_phone2"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(9),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.person.preferred_contact,
+                                                expression:
+                                                  "person.preferred_contact"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "preferred_contact",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.person.preferred_contact
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "preferred_contact",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "preferred_contact"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                    },
+                                    [
+                                      _vm._m(10),
+                                      _vm._v(" "),
+                                      _c("div", [
+                                        _c("p", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.person.skype,
+                                                expression: "person.skype"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                            attrs: {
+                                              id: "skype",
+                                              autocomplete: "false",
+                                              tabindex: "0",
+                                              type: "text"
+                                            },
+                                            domProps: {
+                                              value: _vm.person.skype
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.person,
+                                                  "skype",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ])
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("validation-error-help", {
+                                        staticClass: "my-1 mx-1",
+                                        attrs: {
+                                          status: this.status,
+                                          errors: this.errors,
+                                          "field-value": "skype"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "border-t my-6 pt-3" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "grid lg:grid-cols-3 gap-6 my-3"
+                                },
+                                [
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(11),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _vm.person.person_countries
+                                              ? _c(
+                                                  "select",
+                                                  {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm.person
+                                                            .person_countries,
+                                                        expression:
+                                                          "person.person_countries"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                    attrs: {
+                                                      name: "person_countries",
+                                                      id: "person_countries"
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$selectedVal = Array.prototype.filter
+                                                          .call(
+                                                            $event.target
+                                                              .options,
+                                                            function(o) {
+                                                              return o.selected
+                                                            }
+                                                          )
+                                                          .map(function(o) {
+                                                            var val =
+                                                              "_value" in o
+                                                                ? o._value
+                                                                : o.value
+                                                            return val
+                                                          })
+                                                        _vm.$set(
+                                                          _vm.person,
+                                                          "person_countries",
+                                                          $event.target.multiple
+                                                            ? $$selectedVal
+                                                            : $$selectedVal[0]
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  _vm._l(_vm.country, function(
+                                                    item
+                                                  ) {
+                                                    return _c(
+                                                      "option",
+                                                      {
+                                                        key: item.id,
+                                                        domProps: {
+                                                          value: item.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(item.name)
+                                                        )
+                                                      ]
+                                                    )
+                                                  }),
+                                                  0
+                                                )
+                                              : _vm._e()
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "person_countries"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(12),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.person.person_cities,
+                                                    expression:
+                                                      "person.person_cities"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                attrs: {
+                                                  name: "person_cities",
+                                                  id: "person_cities"
+                                                },
+                                                on: {
+                                                  change: [
+                                                    function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.person,
+                                                        "person_cities",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    },
+                                                    this.getDistrict
+                                                  ]
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "" } },
+                                                  [_vm._v("Şehir seçiniz")]
+                                                ),
+                                                _vm._v(" "),
+                                                _vm._l(_vm.city, function(
+                                                  item
+                                                ) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      key: item.id,
+                                                      domProps: {
+                                                        value: item.id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(item.name))]
+                                                  )
+                                                })
+                                              ],
+                                              2
+                                            )
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "person_cities"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(13),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.person
+                                                        .person_district,
+                                                    expression:
+                                                      "person.person_district"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                attrs: {
+                                                  name: "person_district",
+                                                  id: "person_district"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.person,
+                                                      "person_district",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  {
+                                                    attrs: {
+                                                      value: "",
+                                                      selected: ""
+                                                    }
+                                                  },
+                                                  [_vm._v("Önce ilçe seçiniz")]
+                                                ),
+                                                _vm._v(" "),
+                                                _vm._l(_vm.district, function(
+                                                  item
+                                                ) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      key: item.id,
+                                                      domProps: {
+                                                        value: item.id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(item.ilce))]
+                                                  )
+                                                })
+                                              ],
+                                              2
+                                            )
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "person_district"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-span-3" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(14),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _c("textarea", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.person.address,
+                                                  expression: "person.address"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                              attrs: {
+                                                id: "address",
+                                                autocomplete: "false",
+                                                tabindex: "0",
+                                                type: "text"
+                                              },
+                                              domProps: {
+                                                value: _vm.person.address
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.person,
+                                                    "address",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _c("validation-error-help", {
+                                          staticClass: "my-1 mx-1",
+                                          attrs: {
+                                            status: this.status,
+                                            errors: this.errors,
+                                            "field-value": "address"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "border-t my-6 pt-3" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "grid lg:grid-cols-3 gap-6 my-3"
+                                },
+                                [
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+                                      },
+                                      [
+                                        _vm._m(15),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("p", [
+                                            _vm.person.mod_id
+                                              ? _c(
+                                                  "select",
+                                                  {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm.person.mod_id,
+                                                        expression:
+                                                          "person.mod_id"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
+                                                    attrs: {
+                                                      name: "mod_id",
+                                                      id: "mod_id"
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$selectedVal = Array.prototype.filter
+                                                          .call(
+                                                            $event.target
+                                                              .options,
+                                                            function(o) {
+                                                              return o.selected
+                                                            }
+                                                          )
+                                                          .map(function(o) {
+                                                            var val =
+                                                              "_value" in o
+                                                                ? o._value
+                                                                : o.value
+                                                            return val
+                                                          })
+                                                        _vm.$set(
+                                                          _vm.person,
+                                                          "mod_id",
+                                                          $event.target.multiple
+                                                            ? $$selectedVal
+                                                            : $$selectedVal[0]
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "option",
+                                                      {
+                                                        attrs: {
+                                                          value: "",
+                                                          selected: ""
+                                                        }
+                                                      },
+                                                      [_vm._v("Mod seçiniz")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _vm._l(
+                                                      _vm.attributes.mod,
+                                                      function(item) {
+                                                        return _vm.attributes
+                                                          .mod
+                                                          ? _c(
+                                                              "option",
+                                                              {
+                                                                key: item.id,
+                                                                domProps: {
+                                                                  value: item.id
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    item.name
+                                                                  )
+                                                                )
+                                                              ]
+                                                            )
+                                                          : _vm._e()
+                                                      }
+                                                    )
+                                                  ],
+                                                  2
+                                                )
+                                              : _vm._e()
                                           ])
                                         ])
                                       ]
@@ -71937,770 +75090,13 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                                        Ekle\n                                    "
+            "\n                                        Güncelle\n                                    "
           )
         ]
       )
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Index.vue?vue&type=template&id=598f7217&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Index.vue?vue&type=template&id=598f7217&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex flex-col space-x-3 min-h-screen" }, [
-    _c("div", { staticClass: "flex-col mb-5" }, [
-      _c(
-        "div",
-        { staticClass: "dark:text-gray-400 text-gray-500 font-bold my-3 pl-5" },
-        [
-          _c(
-            "nav",
-            {
-              staticClass:
-                "float-left text-gray-900 dark:text-gray-400 mt-2 text-sm float-left font-bold",
-              attrs: { "aria-label": "Breadcrumb" }
-            },
-            [
-              _c("ol", { staticClass: "list-none p-0 inline-flex" }, [
-                _c(
-                  "li",
-                  { staticClass: "flex items-center" },
-                  [
-                    _c("router-link", { attrs: { to: { name: "home" } } }, [
-                      _vm._v("Ana Sayfa")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "fill-current w-3 h-3 mx-3",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 320 512"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                          }
-                        })
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "text-gray-500",
-                        attrs: {
-                          to: { name: "person" },
-                          "aria-current": "person"
-                        }
-                      },
-                      [_vm._v("Kişiler")]
-                    )
-                  ],
-                  1
-                )
-              ])
-            ]
-          )
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex-col mb-5" }, [
-      _c(
-        "div",
-        { staticClass: "my-2 flex sm:flex-row flex-col" },
-        [
-          _c("div", { staticClass: "flex flex-row mb-1 sm:mb-0" }, [
-            _c("div", { staticClass: "relative" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.filtered.paginate,
-                      expression: "filtered.paginate"
-                    }
-                  ],
-                  staticClass:
-                    "appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.filtered,
-                          "paginate",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                      function($event) {
-                        return _vm.getPerson()
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "20" } }, [_vm._v("20")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "50" } }, [_vm._v("50")])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                },
-                [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "fill-current h-4 w-4",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                        }
-                      })
-                    ]
-                  )
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "block flex-row relative" }, [
-            _c(
-              "span",
-              {
-                staticClass:
-                  "h-full absolute inset-y-0 left-0 flex items-center pl-2"
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "h-4 w-4 fill-current text-gray-500",
-                    attrs: { viewBox: "0 0 24 24" }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.filtered.search,
-                  expression: "filtered.search"
-                }
-              ],
-              staticClass:
-                "appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none",
-              attrs: { placeholder: "Arama Yap" },
-              domProps: { value: _vm.filtered.search },
-              on: {
-                change: function($event) {
-                  return _vm.getPerson()
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.filtered, "search", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center",
-              on: {
-                click: function($event) {
-                  return _vm.getPerson()
-                }
-              }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  staticClass: "w-5 h-5 mr-2",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d:
-                        "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                    }
-                  })
-                ]
-              ),
-              _vm._v("\n                Yenile\n            ")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center",
-              attrs: { to: { name: "person.create" } }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  staticClass: "w-5 h-5 mr-2",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d:
-                        "M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    }
-                  })
-                ]
-              ),
-              _vm._v("\n                Yeni\n            ")
-            ]
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex-col" }, [
-      !this.loading
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "inline-block min-w-full shadow rounded-lg overflow-hidden"
-              },
-              [
-                _vm.person.data
-                  ? _c("div", [
-                      _vm.person.data
-                        ? _c(
-                            "table",
-                            {
-                              staticClass:
-                                "min-w-full leading-normal border-2 dark:border-gray-500"
-                            },
-                            [
-                              _vm._m(0),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(_vm.person.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-800"
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "flex items-center" },
-                                          [
-                                            _c("div", { staticClass: "ml-3" }, [
-                                              _c(
-                                                "p",
-                                                {
-                                                  staticClass:
-                                                    "text-gray-900 dark:text-white"
-                                                },
-                                                [_vm._v(_vm._s(item.id))]
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "text-gray-900 dark:text-white text-sm"
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                item.person_first_name +
-                                                  " " +
-                                                  item.person_last_name
-                                              )
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "text-gray-900 dark:text-white text-sm"
-                                          },
-                                          [_vm._v(_vm._s(item.person_email))]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "text-gray-900 dark:text-white text-sm"
-                                          },
-                                          [_vm._v(_vm._s(item.person_phone))]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "text-gray-900 dark:text-white text-sm"
-                                          },
-                                          [_vm._v(_vm._s(item.mod.name))]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
-                                      },
-                                      [
-                                        _c(
-                                          "label",
-                                          { staticClass: "flex items-center" },
-                                          [
-                                            _c("input", {
-                                              staticClass:
-                                                "relative w-10 h-5 transition-all duration-200 ease-in-out bg-gray-400 rounded-full shadow-inner outline-none appearance-none ",
-                                              attrs: { type: "checkbox" },
-                                              domProps: {
-                                                checked: item.is_active == 1
-                                              },
-                                              on: {
-                                                change: function($event) {
-                                                  return _vm.setIsActive(
-                                                    item.id
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "span",
-                                              { staticClass: "ml-2" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    item.is_active == 1
-                                                      ? "Aktif"
-                                                      : "Pasif"
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                İşlemler\n                                "
-                                        ),
-                                        _c("br"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "router-link",
-                                          {
-                                            staticClass:
-                                              "whitespace-no-wrap dark:bg-green-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-green-700 text-white bg-green-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center",
-                                            attrs: {
-                                              to: {
-                                                name: "person.update",
-                                                params: { id: item.id }
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("span", [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  staticClass: "w-4 h-4",
-                                                  attrs: {
-                                                    xmlns:
-                                                      "http://www.w3.org/2000/svg",
-                                                    fill: "none",
-                                                    viewBox: "0 0 24 24",
-                                                    stroke: "currentColor"
-                                                  }
-                                                },
-                                                [
-                                                  _c("path", {
-                                                    attrs: {
-                                                      "stroke-linecap": "round",
-                                                      "stroke-linejoin":
-                                                        "round",
-                                                      "stroke-width": "2",
-                                                      d:
-                                                        "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                }),
-                                0
-                              )
-                            ]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "place-content-center" },
-                        [
-                          _c("Pagination", {
-                            attrs: {
-                              links: _vm.person.meta.links,
-                              method: this.getPerson,
-                              name: "person"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  : _c("div", [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "dark:bg-gray-800 dark:text-white bg-gray-100 border text-center border-gray-200 text-gray--300 px-4 py-4 rounded relative",
-                          attrs: { role: "alert" }
-                        },
-                        [
-                          _c("strong", { staticClass: "font-bold" }, [
-                            _vm._v("Veri Bulunamadı.")
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "block sm:inline" }, [
-                            _vm._v(
-                              "Aradığınız kriterlere göre bir veri bulunamadı."
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "absolute top-0 bottom-0 right-0 px-4 py-3"
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass:
-                                    "fill-current h-6 w-6 text-orange-500",
-                                  attrs: {
-                                    role: "button",
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    viewBox: "0 0 20 20"
-                                  }
-                                },
-                                [
-                                  _c("title", [_vm._v("Kapat")]),
-                                  _c("path", {
-                                    attrs: {
-                                      d:
-                                        "M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
-                                    }
-                                  })
-                                ]
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-              ]
-            )
-          ])
-        : _c("div", [
-            _c(
-              "div",
-              { staticClass: "flex justify-center items-center" },
-              [_c("Spinner")],
-              1
-            )
-          ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                ID\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                Adı Soyadı\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                E-posta\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-widerr"
-          },
-          [
-            _vm._v(
-              "\n                                Cep Telefonu\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                Mod\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                Durum\n                            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-          },
-          [
-            _vm._v(
-              "\n                                İşlemler\n                            "
-            )
-          ]
-        )
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=template&id=c659f658&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Person/Update.vue?vue&type=template&id=c659f658&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Update\n")])
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -72891,7 +75287,7 @@ var render = function() {
                               attrs: {
                                 status: this.status,
                                 errors: this.errors,
-                                "field-value": "profile_image"
+                                "field-value": "image"
                               }
                             })
                           ],

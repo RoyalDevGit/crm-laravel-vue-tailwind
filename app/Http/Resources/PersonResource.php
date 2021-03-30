@@ -2,6 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Attributes\CitiesResource;
+use App\Http\Resources\Attributes\CountriesResource;
+use App\Http\Resources\Attributes\DistrictResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PersonResource extends JsonResource
@@ -29,7 +32,12 @@ class PersonResource extends JsonResource
             'social_media' => $this->social_media,
             'lead_source' => $this->lead_source,
             'address' => $this->address,
+            'mod_id' => $this->mod->id,
             'mod' => $this->mod,
+            'companies_id' => $this->companies->id,
+            'person_countries' => $this->person_countries,
+            'person_cities' => $this->person_cities,
+            'person_district' => $this->person_district,
             'is_active' => $this->is_active,
         ];
     }

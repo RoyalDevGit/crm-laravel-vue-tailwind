@@ -46,7 +46,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <validation-error-help class="my-1 mx-1"  :status="this.status" :errors="this.errors" field-value="profile_image"/>
+                                        <validation-error-help class="my-1 mx-1"  :status="this.status" :errors="this.errors" field-value="image"/>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,6 @@ export default {
             });
         },
         updateUser : function (){
-            console.log(this.user);
             axios({
                 url: `/profile-update`,
                 method: "PUT",
@@ -206,7 +205,13 @@ export default {
                 this.user.profile_image = response.data.data.image_url; // Get url from response
                 this.$store.commit('setUser',this.user);
                 this.updateUser();
-            })
+            }).catch(error => {
+                if(422 === error.response.status){
+                    this.errors = error.response.data.errors;
+                }
+                this.status = error.response.status;
+                this.loading = true;
+            });
 
         },
     },

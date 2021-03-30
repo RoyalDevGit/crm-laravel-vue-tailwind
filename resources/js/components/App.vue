@@ -65,7 +65,7 @@
                                     <button @click="setState('setDropDownOpen',!dropDownOpen)"
                                             class="flex items-center space-x-2 relative focus:outline-none">
                                         <h2 class="text-gray-700 dark:text-gray-300 text-sm hidden sm:block"> {{user.name}} </h2>
-                                        <img class="h-9 w-9 rounded-full border-2 border-purple-500 object-cover" v-if="user.profile_image"
+                                        <img class="h-9 w-9 rounded-full border-2 border-gray-800 object-cover" v-if="user.profile_image"
                                              :src="user.profile_image"
                                              alt="Your avatar">
                                     </button>

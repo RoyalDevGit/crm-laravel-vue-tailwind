@@ -49,7 +49,7 @@
                 </div>
 
                 <button @click="getPerson()"
-                        class="ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center">
+                        class="lg:ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center">
                     <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
@@ -58,7 +58,7 @@
 
 
                 <router-link :to="{name : 'person.create'}"
-                             class="ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center">
+                             class="lg:ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center">
                     <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -122,7 +122,7 @@
                                 </td>
 
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.mod.name }}</p>
+                                    <p class="text-gray-900 dark:text-white text-sm" v-if="item.mod">{{ item.mod.name }}</p>
                                 </td>
 
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
@@ -142,12 +142,16 @@
                                         </svg>
                                     </span>
                                     </router-link>
-                                    <!--
-                                    <button @click="deleteCategories(category.id)"
-                                            class="whitespace-no-wrap bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                                        <span><i class="fa fa-trash"></i></span>
+
+                                    <button type="button" @click="deletePerson(item.id)"
+                                            class="whitespace-no-wrap dark:bg-red-800 dark:text-white dark:hover:bg-white dark:hover:text-gray-800 hover:bg-red-700 text-white bg-red-500 text-sm rounded-xl  font-bold p-1 m-1 inline-flex items-center">
+                                            <span>
+                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                  <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                </svg>
+                                            </span>
                                     </button>
-                                    -->
+
                                 </td>
                             </tr>
 
@@ -215,6 +219,17 @@ export default {
                 this.loading = false;
                 this.person = res.data
             })
+        },
+        deletePerson(id){
+            this.loading = true;
+            axios.delete(`/persons/${id}`).then(res => {
+                this.loading = false;
+                this.$notify(
+                    { group: res.data.status, title: "Başarılı", text: res.data.message },
+                    2000
+                );
+                this.getPerson();
+            });
         },
         setIsActive(id){
             axios({

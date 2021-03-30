@@ -390,7 +390,6 @@ export default {
                 method : 'put',
                 data : this.company,
             }).then(response => {
-                console.log(response);
                 this.company = response.data.data
                 this.$notify(
                     { group: response.data.status, title: "Başarılı", text: response.data.message},
