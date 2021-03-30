@@ -126,9 +126,6 @@
                                 <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Firma Kayıt Sahibi
                                 </th>
-                                <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    web Sitesi
-                                </th>
 
                                 <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Aktif
@@ -156,9 +153,6 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
                                     <p class="text-gray-900 dark:text-white text-sm">{{ item.company_author }}</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.company_web_site }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
                                     <label class="flex items-center">
