@@ -4065,11 +4065,11 @@ __webpack_require__.r(__webpack_exports__);
         'social_media': '',
         'lead_source': '',
         'address': '',
-        'mod': '',
+        'mod_id': '',
         'person_countries': 1,
         'person_cities': '',
         'person_district': '',
-        'companies': ''
+        'companies_id': ''
       }
     };
   },
@@ -70872,15 +70872,17 @@ var render = function() {
                                                 {
                                                   name: "model",
                                                   rawName: "v-model",
-                                                  value: _vm.person.companies,
-                                                  expression: "person.companies"
+                                                  value:
+                                                    _vm.person.companies_id,
+                                                  expression:
+                                                    "person.companies_id"
                                                 }
                                               ],
                                               staticClass:
                                                 "py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full",
                                               attrs: {
-                                                name: "companies",
-                                                id: "companies"
+                                                name: "companies_id",
+                                                id: "companies_id"
                                               },
                                               on: {
                                                 change: function($event) {
@@ -70900,7 +70902,7 @@ var render = function() {
                                                     })
                                                   _vm.$set(
                                                     _vm.person,
-                                                    "companies",
+                                                    "companies_id",
                                                     $event.target.multiple
                                                       ? $$selectedVal
                                                       : $$selectedVal[0]
@@ -70952,7 +70954,7 @@ var render = function() {
                                         attrs: {
                                           status: this.status,
                                           errors: this.errors,
-                                          "field-value": "companies"
+                                          "field-value": "companies_id"
                                         }
                                       })
                                     ],
@@ -71955,8 +71957,8 @@ var render = function() {
                                                   {
                                                     name: "model",
                                                     rawName: "v-model",
-                                                    value: _vm.person.mod,
-                                                    expression: "person.mod"
+                                                    value: _vm.person.mod_id,
+                                                    expression: "person.mod_id"
                                                   }
                                                 ],
                                                 staticClass:
@@ -71983,7 +71985,7 @@ var render = function() {
                                                       })
                                                     _vm.$set(
                                                       _vm.person,
-                                                      "mod",
+                                                      "mod_id",
                                                       $event.target.multiple
                                                         ? $$selectedVal
                                                         : $$selectedVal[0]
@@ -72040,7 +72042,7 @@ var render = function() {
                                           attrs: {
                                             status: this.status,
                                             errors: this.errors,
-                                            "field-value": "mod"
+                                            "field-value": "mod_id"
                                           }
                                         })
                                       ],
@@ -72124,7 +72126,7 @@ var staticRenderFns = [
             {
               staticClass:
                 "bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1",
-              attrs: { for: "companies" }
+              attrs: { for: "companies_id" }
             },
             [_vm._v("Firma")]
           )

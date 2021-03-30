@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 interface CompanyRepositoryInterface {
 
+    public function all();
     public function get(Request $request);
     public function create($data);
     public function find($id);
