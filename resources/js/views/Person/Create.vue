@@ -308,12 +308,12 @@
                                                 <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
                                                     <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
                                                         <p>
-                                                            <label for="mod_id" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Mod Seçiniz</label>
+                                                            <label for="mod" class="bg-white dark:bg-gray-800 dark:text-white text-gray-600 px-1">Mod Seçiniz</label>
                                                         </p>
                                                     </div>
                                                     <div>
                                                         <p>
-                                                            <select class="py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full" name="mod_id" id="mod_id" v-model="person.mod_id">
+                                                            <select class="py-1 px-1 dark:bg-gray-800 bg-white dark:text-white text-gray-900 outline-none block h-full w-full" name="mod" id="mod" v-model="person.mod_id">
                                                                 <option value="" selected>Mod seçiniz</option>
                                                                 <option v-if="attributes.mod" v-for="item in attributes.mod" :value="item.id" :key="item.id">{{ item.name }}</option>
                                                             </select>
