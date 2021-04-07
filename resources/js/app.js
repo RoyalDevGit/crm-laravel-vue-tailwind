@@ -8,11 +8,17 @@ import router from './router';
 import store from './store';
 import App from './components/App';
 import axios from "axios";
+import moment from 'moment';
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
+require('./bootstrap')
 
-require('./bootstrap');
-
-
+Vue.filter('formatDate',function(value){
+    if(value){
+        return moment(String(value)).locale('tr').startOf('day').fromNow();
+    }
+});
 
 /**
  * The following block of code may be used to automatically register your

@@ -152,7 +152,7 @@
                                     <p class="text-gray-900 dark:text-white text-sm">{{ item.company_phone }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                    <p class="text-gray-900 dark:text-white text-sm">{{ item.company_author }}</p>
+                                    <p v-if="item.user" class="text-gray-900 dark:text-white text-sm">{{ item.user.name }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:bg-gray-800 dark:border-gray-500">
                                     <label class="flex items-center">
@@ -266,14 +266,6 @@ export default {
                 this.getCompany();
             });
         },
-        getAttributes(){
-            axios({
-                url : `/company-list`,
-                method : 'get',
-            }).then(response => {
-                this.attributes = response.data.attributes
-            });
-        },
         setIsActive(id){
             axios({
                 url : `/company-active/${id}`,
@@ -292,7 +284,16 @@ export default {
                 this.status = error.response.status;
                 this.loading = true;
             })
-        }
+        },
+        getAttributes(){
+            axios({
+                url : `/company-list`,
+                method : 'get',
+            }).then(response => {
+                this.attributes = response.data.attributes
+            });
+        },
+
     },
 
 }
@@ -321,4 +322,5 @@ input:checked {
 input:checked:before {
     left: 1.25rem;
 }
+
 </style>

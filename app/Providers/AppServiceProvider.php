@@ -14,6 +14,8 @@ use App\Repositories\CustomerType\CustomerTypeRepositoryInterface;
 use App\Repositories\District\DistrictRepository;
 use App\Repositories\Mod\ModRepository;
 use App\Repositories\Mod\ModRepositoryInterface;
+use App\Repositories\Note\NoteRepository;
+use App\Repositories\Note\NoteRepositoryInterface;
 use App\Repositories\Person\PersonRepository;
 use App\Repositories\Person\PersonRepositoryInterface;
 use App\Repositories\SizeCode\SizeCodeRepository;
@@ -47,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CityRepositoryInterface::class,CityRepository::class);
         $this->app->bind(DistrictRepositoryInterface::class,DistrictRepository::class);
         $this->app->bind(StorageRepositoryInterface::class,StorageRepository::class);
+        $this->app->bind(NoteRepositoryInterface::class,NoteRepository::class);
     }
 
     /**

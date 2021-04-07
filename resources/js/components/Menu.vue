@@ -34,6 +34,14 @@
             <span class="mx-2">Kişiler</span>
         </router-link>
 
+        <router-link exact-active-class="text-gray-700 dark:text-gray-100 bg-gray-200 dark:bg-gray-800" :to="{ name : 'notes'}"
+                     class="flex mt-3 py-2 pl-8 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+            </svg>
+            <span class="mx-2">Notlar</span>
+        </router-link>
+
         <a href="#"
            class="flex mt-3 py-2 pl-8 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

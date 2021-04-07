@@ -24,10 +24,10 @@ class CompanyController extends Controller
 
     public function __construct(CompanyRepositoryInterface $companyRepository,CustomerTypeRepositoryInterface $customerTypeRepository,SizeCodeRepositoryInterface $sizeCodeRepository,StatusRepositoryInterface $statusRepository)
     {
-        $this->companyRepository= $companyRepository;
-        $this->customerTypeRepository= $customerTypeRepository;
-        $this->sizeCodeRepository= $sizeCodeRepository;
-        $this->statusRepository= $statusRepository;
+        $this->companyRepository = $companyRepository;
+        $this->customerTypeRepository = $customerTypeRepository;
+        $this->sizeCodeRepository = $sizeCodeRepository;
+        $this->statusRepository = $statusRepository;
     }
 
     /**

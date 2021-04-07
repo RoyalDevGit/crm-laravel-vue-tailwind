@@ -8,10 +8,10 @@
                 <span class="m-1">Geri Dön</span>
             </a>
         </div>
-        <div class="flex-col mt-5">
-            <div class="flex justify-center h-full w-full items-center space-x-3 mt-5">
-                <div v-if="!this.loading">
-                    <div class="mb-10">
+        <div v-if="!this.loading" class="flex-col">
+            <div class="mt-5">
+                <div class="flex justify-center items-center space-x-3 mt-5">
+                    <div class="mb-10 w-full">
                         <div class="mt-5 dark:bg-gray-800 bg-white shadow rounded-lg p-6">
                             <div>
                                 <div class="flex block dark:text-white text-gray-900">
@@ -335,12 +335,11 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <div v-else>
-                    <Spinner/>
                 </div>
             </div>
+        </div>
+        <div v-else>
+            <Spinner/>
         </div>
     </div>
 </template>

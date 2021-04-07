@@ -31,7 +31,7 @@ class StorageController extends Controller
         $request->validated();
 
         $uploadFolder = $request->folderName ?? 'other';
-        $image = $request->file('image');
+        $image = $request->file('image') ?? $request->file('file');
 
         // optimizing image
 

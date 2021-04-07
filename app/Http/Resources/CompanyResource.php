@@ -33,8 +33,8 @@ class CompanyResource extends JsonResource
             'customer_type_id' => $this->customer_type_id,
             'status_id' => $this->status_id,
             'size_code_id' => $this->size_code_id,
-            /*'user' => new UserResource($this->user),
-            'status' => new StatusResource($this->status),
+            'user' => new UserResource($this->user),
+            /*'status' => new StatusResource($this->status),
             'customer_type' => new CustomerTypeResource($this->customerType),
             'size_code' => new SizeCodeResource($this->sizeCode),*/
         ];

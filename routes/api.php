@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\CompanyController;
 use App\Http\Controllers\Api\v1\CountryCityController;
+use App\Http\Controllers\Api\v1\NoteController;
 use App\Http\Controllers\Api\v1\PasswordChange;
 use App\Http\Controllers\Api\v1\PersonController;
 use App\Http\Controllers\Api\v1\ProfileUpdateController;
@@ -42,6 +43,10 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('/persons', PersonController::class);
     Route::get('/person-list', [PersonController::class,'create']);
     Route::put('/person-active/{id}', [PersonController::class,'active']);
+
+    Route::apiResource('/notes', NoteController::class);
+    Route::get('/note-list', [NoteController::class,'create']);
+    Route::put('/note-active/{id}', [NoteController::class,'active']);
 
     Route::post('/upload-image' , StorageController::class)->name('upload.editor');
 
