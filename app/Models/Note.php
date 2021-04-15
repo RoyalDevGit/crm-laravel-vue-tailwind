@@ -19,6 +19,6 @@ class Note extends Model
 
     public function storage(): BelongsToMany
     {
-        return $this->belongsToMany(Storage::class)->withTimestamps();
+        return $this->belongsToMany(Storage::class,'note_storage')->withTimestamps();
     }
 }

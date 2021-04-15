@@ -14,6 +14,6 @@ class Storage extends Model
 
     public function notes(): BelongsToMany
     {
-        return $this->belongsToMany(Note::class);
+        return $this->belongsToMany(Note::class,'note_storage')->using(NoteStorage::class);
     }
 }

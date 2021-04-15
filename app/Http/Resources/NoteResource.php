@@ -20,7 +20,7 @@ class NoteResource extends JsonResource
             'content' => $this->content,
             'file' => $this->file,
             'user' => new UserResource($this->user),
-            'storage' => NoteResource::collection($this->storage),
+            'storage' => $this->storage,
             'is_active' => $this->is_active,
             'created_at' => $this->created_at,
         ];
