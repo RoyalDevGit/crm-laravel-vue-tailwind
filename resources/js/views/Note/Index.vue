@@ -67,7 +67,7 @@
                         Yenile
                     </button>
 
-                    <button @click="showCreate = !showCreate"
+                    <button @click="showCreateButton"
                             class="lg:ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center">
                         <svg v-if="!this.showCreate" class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                              viewBox="0 0 24 24"
@@ -168,7 +168,7 @@
                                                             <vue-dropzone
                                                                 class="bg-white dark:hover:bg-white dark:bg-gray-800 dark:hover:bg-gray-800"
                                                                 ref="uploadFile" id="dropzone"
-                                                                v-on:vdropzone-success="uploadSuccess"
+                                                                @vdropzone-queue-complete="queueResult"
                                                                 :options="dropzoneOptions"></vue-dropzone>
                                                         </p>
                                                     </div>
@@ -323,11 +323,12 @@ export default {
                 title: '',
                 content: '',
             },
+            createdId : '',
             errors: null,
             status: null,
             note: {},
             attributes: {},
-            showCreate: true,
+            showCreate: false,
             filtered: {
                 search: '',
                 paginate: 5,
@@ -337,8 +338,8 @@ export default {
                 autoProcessQueue: false,
                 thumbnailWidth: 150,
                 addRemoveLinks: true,
-                maxFilesize: 0.5,
-                params: {'folderName': 'note'},
+                maxFilesize: 5,
+                params: { 'folderName': 'note', 'createdId': '' , 'modelName' : '\\App\\Models\\NoteStorage' },
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -350,17 +351,14 @@ export default {
         this.getNote()
     },
     methods: {
-        uploadSuccess(file, response) {
-
-            console.log(response.data.image_url);
-        },
         createNote() {
+            this.createdId = '';
             axios({
                 url: '/notes',
                 method: 'post',
                 data: this.create
             }).then(result => {
-
+                this.dropzoneOptions.params.createdId = result.data.data.id;
                 this.$refs.uploadFile.processQueue()
                 this.$notify(
                     {group: result.data.status, title: "Başarılı", text: result.data.message},
@@ -372,8 +370,10 @@ export default {
                     this.errors = error.response.data.errors;
                 }
                 this.status = error.response.status;
-
             })
+        },
+        queueResult(file, response) {
+            this.showCreate = false
         },
         getNote() {
             this.loading = true;
@@ -393,6 +393,17 @@ export default {
                 this.getNote();
             });
         },
+        cleanInput(){
+            this.create.title = "";
+            this.create.content = "";
+            this.$refs.uploadFile.removeAllFiles()
+            this.showCreate = false;
+        },
+        showCreateButton(){
+            this.getNote()
+            this.showCreate = !this.showCreate
+
+        }
 
     }
 }

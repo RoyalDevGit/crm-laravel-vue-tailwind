@@ -25,7 +25,6 @@ class NoteFactory extends Factory
         return [
             'title' => $this->faker->text,
             'content' => $this->faker->realText(),
-            'file' => null,
             'user_id' => User::all()->random()->id,
             'is_active' => $this->faker->randomElement([1,0]),
         ];

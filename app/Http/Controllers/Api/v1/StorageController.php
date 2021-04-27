@@ -31,13 +31,20 @@ class StorageController extends Controller
         $request->validated();
 
         $uploadFolder = $request->folderName ?? 'other';
+        $createdIdKey = $uploadFolder.'_id';
+        $createdId = $request->createdId ?? '';
+        $modelName = $request->modelName ?? '';
+
+
         $image = $request->file('image') ?? $request->file('file');
 
         // optimizing image
+        if($image->getMimeType() == "image/jpeg"){
+            $fileSize = Image::make($image)->filesize();
+            $thumbnail = Image::make($image)->resize(320, 240);
+            ImageOptimizer::optimize($image);
+        }
 
-        $fileSize = Image::make($image)->filesize();
-        $thumbnail = Image::make($image)->resize(320, 240);
-        ImageOptimizer::optimize($image);
         $imageUploadedPath = $image->store($uploadFolder, 'public');
 
         $imageUrl = Storage::disk('public')->url($imageUploadedPath);
@@ -46,7 +53,7 @@ class StorageController extends Controller
             'image_uploaded_path' => $imageUploadedPath,
             "image_url" => $imageUrl,
             "mime" => $image->getClientMimeType(),
-            'file_size' => $fileSize,
+            'file_size' => $fileSize ?? '',
         );
 
         // Storage repository function
@@ -54,6 +61,15 @@ class StorageController extends Controller
         $insert = $this->storageRepository->create($uploadedImageResponse);
         $uploadedImageResponse['id'] = $insert->id;
 
-        return Response::json(['message' => 'Resim yükleme işlemi başarılı', 'messageType' => 'success', 'status' => 200, 'data' => $uploadedImageResponse], 200);
+        // Storage Pivot Insert
+
+        if ($request->has('createdId')){
+            $modelName::create([
+                $createdIdKey => $createdId,
+                'storage_id' => $uploadedImageResponse['id'],
+            ]);
+        }
+
+        return Response::json(['message' => 'Resim yükleme işlemi başarılı', 'messageType' => 'success', 'status' => 200, 'created_id' => $createdId, 'data' => $uploadedImageResponse], 200);
     }
 }

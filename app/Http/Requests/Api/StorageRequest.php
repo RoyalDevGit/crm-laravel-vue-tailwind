@@ -25,7 +25,7 @@ class StorageRequest extends FormRequest
     {
         return [
             //'file' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
-            'file' => 'required|mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf,docx|max:2048'
+            'file' => 'required|mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf,docx|max:5120'
         ];
     }
     public function attributes()

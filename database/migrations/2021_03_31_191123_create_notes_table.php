@@ -17,7 +17,6 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->json('file')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('is_active');

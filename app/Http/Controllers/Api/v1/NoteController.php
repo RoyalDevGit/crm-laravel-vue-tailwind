@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\NoteRequest;
 use App\Http\Resources\NoteResource;
+use App\Models\NoteStorage;
 use App\Repositories\Note\NoteRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -145,6 +146,7 @@ class NoteController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
+        NoteStorage::where('note_id',$id)->delete();
         $note = $this->noteRepository->destroy($id);
         if ($note) {
             return Response::json([

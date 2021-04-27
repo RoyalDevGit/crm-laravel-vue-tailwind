@@ -4138,11 +4138,12 @@ __webpack_require__.r(__webpack_exports__);
         title: '',
         content: ''
       },
+      createdId: '',
       errors: null,
       status: null,
       note: {},
       attributes: {},
-      showCreate: true,
+      showCreate: false,
       filtered: {
         search: '',
         paginate: 5
@@ -4152,9 +4153,11 @@ __webpack_require__.r(__webpack_exports__);
         autoProcessQueue: false,
         thumbnailWidth: 150,
         addRemoveLinks: true,
-        maxFilesize: 0.5,
+        maxFilesize: 5,
         params: {
-          'folderName': 'note'
+          'folderName': 'note',
+          'createdId': '',
+          'modelName': '\\App\\Models\\NoteStorage'
         },
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -4167,17 +4170,17 @@ __webpack_require__.r(__webpack_exports__);
     this.getNote();
   },
   methods: {
-    uploadSuccess: function uploadSuccess(file, response) {
-      console.log(response.data.image_url);
-    },
     createNote: function createNote() {
       var _this = this;
 
+      this.createdId = '';
       axios({
         url: '/notes',
         method: 'post',
         data: this.create
       }).then(function (result) {
+        _this.dropzoneOptions.params.createdId = result.data.data.id;
+
         _this.$refs.uploadFile.processQueue();
 
         _this.$notify({
@@ -4193,6 +4196,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.status = error.response.status;
       });
+    },
+    queueResult: function queueResult(file, response) {
+      this.showCreate = false;
     },
     getNote: function getNote() {
       var _this2 = this;
@@ -4218,6 +4224,16 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getNote();
       });
+    },
+    cleanInput: function cleanInput() {
+      this.create.title = "";
+      this.create.content = "";
+      this.$refs.uploadFile.removeAllFiles();
+      this.showCreate = false;
+    },
+    showCreateButton: function showCreateButton() {
+      this.getNote();
+      this.showCreate = !this.showCreate;
     }
   }
 });
@@ -72080,11 +72096,7 @@ var render = function() {
             {
               staticClass:
                 "lg:ml-2 bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white text-sm font-bold py-2 px-4 rounded inline-flex items-center",
-              on: {
-                click: function($event) {
-                  _vm.showCreate = !_vm.showCreate
-                }
-              }
+              on: { click: _vm.showCreateButton }
             },
             [
               !this.showCreate
@@ -72357,8 +72369,8 @@ var render = function() {
                                                   options: _vm.dropzoneOptions
                                                 },
                                                 on: {
-                                                  "vdropzone-success":
-                                                    _vm.uploadSuccess
+                                                  "vdropzone-queue-complete":
+                                                    _vm.queueResult
                                                 }
                                               })
                                             ],
