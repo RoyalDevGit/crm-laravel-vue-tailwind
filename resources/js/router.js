@@ -9,7 +9,6 @@ import Person from './views/Person/Index';
 import PersonCreate from './views/Person/Create';
 import PersonUpdate from './views/Person/Update';
 import Note from "./views/Note/Index";
-import NoteCreate from './views/Note/Create';
 import NoteUpdate from './views/Note/Update';
 
 Vue.use(VueRouter);
@@ -58,13 +57,12 @@ export default new VueRouter({
             meta : { title : 'Notlar '}
         },
         {
-            path : '/note/create', name : 'note.create', component : NoteCreate,
-            meta : { title : 'Not Ekle '}
-        },
-        {
             path : '/note/update/:id', name : 'note.update', component : NoteUpdate,
             meta : { title : 'Not Güncelle '}
         },
-
+        {
+            path : '/note', name : 'notes', component : Note,
+            meta : { title : 'Notlar '}
+        },
     ]
 });

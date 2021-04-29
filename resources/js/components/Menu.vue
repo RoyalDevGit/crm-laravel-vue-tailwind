@@ -42,6 +42,7 @@
             <span class="mx-2">Notlar</span>
         </router-link>
 
+
         <a href="#"
            class="flex mt-3 py-2 pl-8 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

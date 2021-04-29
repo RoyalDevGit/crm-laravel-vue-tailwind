@@ -187,8 +187,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div v-else class="flex-col">
                 <div v-if="!this.loading">
@@ -199,9 +197,6 @@
                                 <tr>
                                     <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                         Başlık
-                                    </th>
-                                    <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Ön izleme
                                     </th>
                                     <th class="px-5 py-3 border-b-2 dark:bg-gray-600 dark:border-gray-700 dark:text-white border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-widerr">
                                         Oluşturan
@@ -221,9 +216,7 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
                                         <p class="text-gray-900 dark:text-white text-sm cut">{{ item.title }}</p>
                                     </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
-                                        <p class="text-gray-900 dark:text-white text-sm cut">{{ item.content }}</p>
-                                    </td>
+
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-500">
                                         <p v-if="item.user" class="font-semibold text-gray-900 dark:text-white text-sm">
                                             {{ item.user.name }}</p>

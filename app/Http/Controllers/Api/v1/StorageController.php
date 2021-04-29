@@ -39,7 +39,7 @@ class StorageController extends Controller
         $image = $request->file('image') ?? $request->file('file');
 
         // optimizing image
-        if($image->getMimeType() == "image/jpeg"){
+        if($image->getMimeType() == "image/jpeg" || $image->getMimeType() == "image/png"){
             $fileSize = Image::make($image)->filesize();
             $thumbnail = Image::make($image)->resize(320, 240);
             ImageOptimizer::optimize($image);
