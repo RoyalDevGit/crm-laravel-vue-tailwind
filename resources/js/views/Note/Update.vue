@@ -1,5 +1,16 @@
 <template>
-    <div>
+    <div class="flex flex-col space-x-5 min-h-screen">
+        <div class="flex-col">
+            <a @click="$router.go(-1)"
+               class="cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-2 px-4 rounded inline-flex items-center">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+                </svg>
+                <span class="m-1">Geri Dön</span>
+            </a>
+        </div>
         <div class="flex-col">
             <div class="mt-20">
                 <div class="flex justify-center items-center space-x-3 mt-5">
@@ -73,7 +84,8 @@
                                         </div>
                                     </div>
                                     <div class="grid lg:grid-cols-10 gap-6">
-                                        <div v-if="update.storage" v-for="item in update.storage" class="dark:bg-gray-700 bg-gray-200 grid grid-cols-3 grid-rows-7 grid-flow-row overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                        <div v-if="update.storage" v-for="item in update.storage"
+                                             class="dark:bg-gray-700 bg-gray-200 grid grid-cols-3 grid-rows-7 grid-flow-row overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                                             <div class="col-span-3 row-span-4 p-1 m-1">
                                                 <img
                                                     :src="item.mime == 'application/pdf' ? 'https://img.icons8.com/cotton/2x/file.png' : item.image_url"
@@ -94,18 +106,22 @@
                                                     </p>
                                                 </div>
                                                 <div class="mt-1 p-3">
-                                                    <a :href="item.image_url" download class="flex justify-center mt-2 text-sm dark:bg-white bg-gray-800  dark:text-gray-800 text-gray-200 rounded-xl">
+                                                    <a :href="item.image_url" download
+                                                       class="flex justify-center mt-2 text-sm dark:bg-white bg-gray-800  dark:text-gray-800 text-gray-200 rounded-xl">
                                                         İndir
-                                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
+                                                             fill="none"
                                                              viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2"
                                                                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                                         </svg>
                                                     </a>
-                                                    <a href="" class="flex justify-center mt-2 text-sm dark:bg-white bg-gray-800  dark:text-gray-800 text-gray-200 rounded-xl">
+                                                    <a href="javascript:void(0);" @click="deleteImage(item.id)"
+                                                       class="flex justify-center mt-2 text-sm dark:bg-white bg-gray-800  dark:text-gray-800 text-gray-200 rounded-xl">
                                                         Sil
-                                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
+                                                             fill="none"
                                                              viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2"
@@ -168,7 +184,7 @@ export default {
             axios({
                 url: `/notes/${this.$route.params.id}`,
                 method: 'put',
-                data : this.update,
+                data: this.update,
             }).then(result => {
                 this.loading = false;
                 this.note = result.data.data
@@ -194,6 +210,20 @@ export default {
                 this.update = response.data.data
             }).catch(error => {
                 console.log(error)
+            })
+        },
+        deleteImage(id) {
+            console.log(id)
+            axios({
+                url: `/note-storage/${id}`,
+                method: 'delete',
+            }).then(res => {
+                this.loading = false;
+                this.$notify(
+                    {group: res.data.status, title: "Başarılı", text: res.data.message},
+                    2000
+                );
+                this.getNote();
             })
         }
     },

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\CompanyController;
 use App\Http\Controllers\Api\v1\CountryCityController;
 use App\Http\Controllers\Api\v1\NoteController;
+use App\Http\Controllers\Api\v1\NoteStorageController;
 use App\Http\Controllers\Api\v1\PasswordChange;
 use App\Http\Controllers\Api\v1\PersonController;
 use App\Http\Controllers\Api\v1\ProfileUpdateController;
@@ -47,6 +48,8 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('/notes', NoteController::class);
     Route::get('/note-list', [NoteController::class,'create']);
     Route::put('/note-active/{id}', [NoteController::class,'active']);
+
+    Route::apiResource('/note-storage', NoteStorageController::class);
 
     Route::post('/upload-image' , StorageController::class)->name('upload.editor');
 

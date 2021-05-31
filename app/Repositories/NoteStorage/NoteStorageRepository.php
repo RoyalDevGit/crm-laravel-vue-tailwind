@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Repositories\NoteGalleries;
+namespace App\Repositories\NoteStorage;
 
 use App\Http\Filters\NoteSearchFilter;
 use App\Models\Note;
 use App\Models\NoteGallery;
+use App\Models\NoteStorage;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class NoteGalleriesRepository implements NoteGalleriesRepositoryInterface
+class NoteStorageRepository implements NoteStorageRepositoryInterface
 {
     public $model;
 
-    public function __construct(NoteGallery $note)
+    public function __construct(NoteStorage $note)
     {
         $this->model = $note;
     }
@@ -35,7 +36,8 @@ class NoteGalleriesRepository implements NoteGalleriesRepositoryInterface
         return $this->model->find($id);
     }
 
-    public function destroy($id){
+    public function destroy($id): int
+    {
         return $this->model->destroy($id);
     }
 }

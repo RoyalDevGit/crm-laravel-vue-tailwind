@@ -16,6 +16,8 @@ use App\Repositories\Mod\ModRepository;
 use App\Repositories\Mod\ModRepositoryInterface;
 use App\Repositories\Note\NoteRepository;
 use App\Repositories\Note\NoteRepositoryInterface;
+use App\Repositories\NoteStorage\NoteStorageRepository;
+use App\Repositories\NoteStorage\NoteStorageRepositoryInterface;
 use App\Repositories\Person\PersonRepository;
 use App\Repositories\Person\PersonRepositoryInterface;
 use App\Repositories\SizeCode\SizeCodeRepository;
@@ -50,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DistrictRepositoryInterface::class,DistrictRepository::class);
         $this->app->bind(StorageRepositoryInterface::class,StorageRepository::class);
         $this->app->bind(NoteRepositoryInterface::class,NoteRepository::class);
+        $this->app->bind(NoteStorageRepositoryInterface::class,NoteStorageRepository::class);
     }
 
     /**

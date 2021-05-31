@@ -14,9 +14,40 @@ class StorageRepository implements StorageRepositoryInterface
         $this->model = $storage;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function create($data)
     {
         return $this->model->create($data);
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function destroy($id)
+    {
+        return $this->model->destroy($id);
+    }
+
+    /**
+     * @param $id
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function delete($id){
+        return $this->model->delete($id);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->model->find($id);
     }
 
 }

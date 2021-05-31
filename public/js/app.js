@@ -4365,6 +4365,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4427,6 +4443,25 @@ __webpack_require__.r(__webpack_exports__);
         _this2.update = response.data.data;
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    deleteImage: function deleteImage(id) {
+      var _this3 = this;
+
+      console.log(id);
+      axios({
+        url: "/note-storage/".concat(id),
+        method: 'delete'
+      }).then(function (res) {
+        _this3.loading = false;
+
+        _this3.$notify({
+          group: res.data.status,
+          title: "Başarılı",
+          text: res.data.message
+        }, 2000);
+
+        _this3.getNote();
       });
     }
   }
@@ -72922,7 +72957,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "flex flex-col space-x-5 min-h-screen" }, [
+    _c("div", { staticClass: "flex-col" }, [
+      _c(
+        "a",
+        {
+          staticClass:
+            "cursor-pointer bg-gray-800 hover:bg-gray-400 hover:text-gray-800 dark:bg-white dark:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 text-white float-right text-sm font-bold py-2 px-4 rounded inline-flex items-center",
+          on: {
+            click: function($event) {
+              return _vm.$router.go(-1)
+            }
+          }
+        },
+        [
+          _c(
+            "svg",
+            {
+              staticClass: "w-4 h-4",
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  "stroke-linecap": "round",
+                  "stroke-linejoin": "round",
+                  "stroke-width": "2",
+                  d: "M7 16l-4-4m0 0l4-4m-4 4h18"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "m-1" }, [_vm._v("Geri Dön")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "flex-col" }, [
       _c("div", { staticClass: "mt-20" }, [
         _c(
@@ -73262,7 +73338,16 @@ var render = function() {
                                                 {
                                                   staticClass:
                                                     "flex justify-center mt-2 text-sm dark:bg-white bg-gray-800  dark:text-gray-800 text-gray-200 rounded-xl",
-                                                  attrs: { href: "" }
+                                                  attrs: {
+                                                    href: "javascript:void(0);"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.deleteImage(
+                                                        item.id
+                                                      )
+                                                    }
+                                                  }
                                                 },
                                                 [
                                                   _vm._v(

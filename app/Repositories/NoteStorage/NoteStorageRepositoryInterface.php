@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\NoteGalleries;
+namespace App\Repositories\NoteStorage;
 
 
 use Illuminate\Http\Request;
 
-interface NoteGalleriesRepositoryInterface {
+interface NoteStorageRepositoryInterface {
 
     public function all();
     public function get(Request $request);

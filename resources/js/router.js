@@ -64,5 +64,6 @@ export default new VueRouter({
             path : '/note', name : 'notes', component : Note,
             meta : { title : 'Notlar '}
         },
+
     ]
 });
